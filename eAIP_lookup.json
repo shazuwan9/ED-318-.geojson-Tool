@@ -1,0 +1,1394 @@
+{
+    "PROHIBITED AREAS": {
+        "name": "PROHIBITED AREAS",
+        "upper": 0,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMP220": {
+        "name": "PUSPATI",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMP228": {
+        "name": "BUKIT SERENE",
+        "upper": 5000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMP242": {
+        "name": "WMP242",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBP503": {
+        "name": "WBP503",
+        "upper": 3000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBP504": {
+        "name": "JERUDONG",
+        "upper": 500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBP506": {
+        "name": "WBP506",
+        "upper": 3000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBP602": {
+        "name": "WBP602",
+        "upper": 500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "RESTRICTED AREAS": {
+        "name": "RESTRICTED AREAS",
+        "upper": 0,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR101A": {
+        "name": "WMR101A",
+        "upper": 3000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR101B": {
+        "name": "WMR101B",
+        "upper": 3000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR102B": {
+        "name": "WMR102B",
+        "upper": 370,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR103B": {
+        "name": "WMR103B",
+        "upper": 230,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR104": {
+        "name": "WMR104",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 3000,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR105": {
+        "name": "WMR105",
+        "upper": 235,
+        "upperRef": "AGL",
+        "lower": 6500,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR106": {
+        "name": "WMR106",
+        "upper": 550,
+        "upperRef": "AGL",
+        "lower": 6500,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "LINK CORRIDOR (WMR105-WMR106)": {
+        "name": "LINK CORRIDOR (WMR105-WMR106)",
+        "upper": 200,
+        "upperRef": "AGL",
+        "lower": 130,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR107": {
+        "name": "WMR107",
+        "upper": 7000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR108": {
+        "name": "WMR108",
+        "upper": 7000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR109": {
+        "name": "WMR109",
+        "upper": 500,
+        "upperRef": "AGL",
+        "lower": 8000,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR223": {
+        "name": "KANGAR KAHANG",
+        "upper": 10000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR225": {
+        "name": "NORTH",
+        "upper": 3500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR225A": {
+        "name": "WMR225A",
+        "upper": 2000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR225B": {
+        "name": "WMR225B",
+        "upper": 2000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR226": {
+        "name": "WEST",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR229": {
+        "name": "WMR229",
+        "upper": 1500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR236": {
+        "name": "WMR236",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR237": {
+        "name": "WMR237",
+        "upper": 1500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR238": {
+        "name": "WMR238",
+        "upper": 3000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR239A": {
+        "name": "WMR239A",
+        "upper": 5000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR239B": {
+        "name": "WMR239B",
+        "upper": 5000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR240A": {
+        "name": "WMR240A",
+        "upper": 5500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR240B": {
+        "name": "WMR240B",
+        "upper": 5000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR302A": {
+        "name": "WMR302A",
+        "upper": 460,
+        "upperRef": "AGL",
+        "lower": 6500,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR302B": {
+        "name": "WMR302B",
+        "upper": 460,
+        "upperRef": "AGL",
+        "lower": 6500,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR403": {
+        "name": "WMR403",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR404": {
+        "name": "WMR404",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR405": {
+        "name": "WMR405",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR406": {
+        "name": "WMR406",
+        "upper": 200,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR407": {
+        "name": "WMR407",
+        "upper": 200,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR408": {
+        "name": "WMR408",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR409": {
+        "name": "GURUN",
+        "upper": 3000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR415": {
+        "name": "PENANG",
+        "upper": 4000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR416": {
+        "name": "WMR416",
+        "upper": 3000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR416A": {
+        "name": "WMR416A",
+        "upper": 3000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR416B": {
+        "name": "WMR416B",
+        "upper": 3000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR416C": {
+        "name": "WMR416C",
+        "upper": 3000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR417": {
+        "name": "WMR417",
+        "upper": 5000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR418": {
+        "name": "WMR418",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMR419": {
+        "name": "WMR419",
+        "upper": 5000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WSR2": {
+        "name": "TENGAH CORRIDOR",
+        "upper": 300,
+        "upperRef": "AGL",
+        "lower": 3000,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR501": {
+        "name": "LABUAN",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR508": {
+        "name": "SANDAKAN",
+        "upper": 3000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR509": {
+        "name": "SANDAKAN",
+        "upper": 3000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR510": {
+        "name": "SANDAKAN",
+        "upper": 3000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR511": {
+        "name": "SANDAKAN",
+        "upper": 3000,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR517": {
+        "name": "WBR517",
+        "upper": 400,
+        "upperRef": "AGL",
+        "lower": 5000,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "AIR CORRIDOR ASSOCIATED WITH WBR517": {
+        "name": "AIR CORRIDOR ASSOCIATED WITH WBR517",
+        "upper": 12500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR518": {
+        "name": "WBR518",
+        "upper": 12000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR519": {
+        "name": "WBR519",
+        "upper": 40000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR520": {
+        "name": "WBR520",
+        "upper": 12000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR522": {
+        "name": "WBR522",
+        "upper": 550,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR523": {
+        "name": "WBR523",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR524": {
+        "name": "WBR524",
+        "upper": 1000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR525": {
+        "name": "WBR525",
+        "upper": 4000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR560/520": {
+        "name": "Lumut Gas Plant",
+        "upper": 1500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR601": {
+        "name": "KUCHING",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR603": {
+        "name": "WBR603",
+        "upper": 150,
+        "upperRef": "AGL",
+        "lower": 6000,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR604": {
+        "name": "WBR604",
+        "upper": 150,
+        "upperRef": "AGL",
+        "lower": 6000,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR605": {
+        "name": "WBR605",
+        "upper": 2500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR606": {
+        "name": "WBR606",
+        "upper": 12000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR607": {
+        "name": "WBR607",
+        "upper": 5000,
+        "upperRef": "AMSL",
+        "lower": 1500,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR608": {
+        "name": "WBR608",
+        "upper": 5000,
+        "upperRef": "AMSL",
+        "lower": 1500,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR609": {
+        "name": "WBR609",
+        "upper": 6000,
+        "upperRef": "AMSL",
+        "lower": 1500,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR610": {
+        "name": "WBR610",
+        "upper": 6000,
+        "upperRef": "AMSL",
+        "lower": 1500,
+        "lowerRef": "AMSL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBR611": {
+        "name": "WBR611",
+        "upper": 25,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "DANGER AREAS": {
+        "name": "DANGER AREAS",
+        "upper": 0,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD8": {
+        "name": "CHINA SEA NORTH RANGE",
+        "upper": 550,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD12": {
+        "name": "AREA JULIET",
+        "upper": 550,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD21": {
+        "name": "AREA GOLF",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD105 PENOR": {
+        "name": "WMD105 PENOR",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD221": {
+        "name": "ASAHAN",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD222": {
+        "name": "ASAHAN",
+        "upper": 11000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD224": {
+        "name": "MALAYSIAN NAVAL EXERCISE AREA",
+        "upper": 12000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD227": {
+        "name": "PULAU YU",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD230": {
+        "name": "ULU TIRAM (SOUTH)",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD231": {
+        "name": "ULU TIRAM (NORTH)",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD411": {
+        "name": "BUTTERWORTH",
+        "upper": 6500,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD412A": {
+        "name": "BUTTERWORTH",
+        "upper": 500,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD414": {
+        "name": "SONG SONG",
+        "upper": 5500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD419": {
+        "name": "WMD419",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD420": {
+        "name": "WMD420",
+        "upper": 10,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WMD421": {
+        "name": "WMD421",
+        "upper": 0,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WSD11": {
+        "name": "PASIR LABA",
+        "upper": 1300,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WSD13": {
+        "name": "AREA KILO",
+        "upper": 550,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WSD14": {
+        "name": "AREA LIMA",
+        "upper": 550,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WSD15": {
+        "name": "AREA MIKE",
+        "upper": 550,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WSD20": {
+        "name": "AREA HOTEL",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WSD44": {
+        "name": "WSD44",
+        "upper": 550,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WSD45": {
+        "name": "WSD45",
+        "upper": 550,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD505": {
+        "name": "BALAMBANGAN",
+        "upper": 150,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "LINK ROUTE ECHO 1 TRANSITING CORRIDOR FOR WBD505": {
+        "name": "LINK ROUTE ECHO 1 TRANSITING CORRIDOR FOR WBD505",
+        "upper": 12000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "LINK ROUTE ECHO 2 TRANSITING CORRIDOR WBD505": {
+        "name": "LINK ROUTE ECHO 2 TRANSITING CORRIDOR WBD505",
+        "upper": 12000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD507": {
+        "name": "WBD507",
+        "upper": 1000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD508": {
+        "name": "WBD508",
+        "upper": 500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD509": {
+        "name": "BINTURAN RANGE",
+        "upper": 1000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD509A": {
+        "name": "BUKIT AGOK FIRING COMPLEX",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD510": {
+        "name": "LUMUT RANGE",
+        "upper": 1000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD511": {
+        "name": "BERAKAS RANGE",
+        "upper": 1000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD512": {
+        "name": "BERAKAS RANGE",
+        "upper": 750,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD513": {
+        "name": "TUTONG RANGE",
+        "upper": 500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD514": {
+        "name": "WBD514",
+        "upper": 500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD515": {
+        "name": "WBD515",
+        "upper": 500,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD521": {
+        "name": "WBD521",
+        "upper": 400,
+        "upperRef": "AGL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD526": {
+        "name": "WBD526",
+        "upper": 10000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    },
+    "WBD527": {
+        "name": "WBD527",
+        "upper": 2000,
+        "upperRef": "AMSL",
+        "lower": 0,
+        "lowerRef": "AGL",
+        "type": "REQ_AUTHORIZATION",
+        "country": "MYS",
+        "reason": [
+            "OTHER"
+        ]
+    }
+}
