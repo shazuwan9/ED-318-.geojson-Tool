@@ -83,9 +83,7 @@
             </div>
             <input type="file" id="geoPicker" style="display:none" accept=".geojson,.json">
             <input type="file" id="kmlPicker" style="display:none" accept=".kml,.kmz">
-            
             <textarea id="inputGeo" placeholder="Paste GeoJSON or upload KML/KMZ..."></textarea>
-            
             <div class="footer">
                 <div id="autoStatus" class="auto-msg"></div>
                 <button class="btn btn-primary" style="width:100%" onclick="process()">Map Data to ED-318</button>
@@ -132,9 +130,18 @@
 
     function init() {
         map = L.map('map').setView([4.21, 101.97], 6);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        
+        // Initialize layer groups
         rawLayer = L.layerGroup().addTo(map);
         ed318Layer = L.layerGroup().addTo(map);
+
+        // Add Layer Control
+        const overlays = {
+            "Original Geometry (Step 2)": rawLayer,
+            "ED-318 GeoZone (Step 3)": ed318Layer
+        };
+        L.control.layers({ "OpenStreetMap": osm }, overlays, { collapsed: false }).addTo(map);
 
         fetch('eAIP_lookup.json').then(r => r.json()).then(data => {
             eAIPData = data;
@@ -163,8 +170,6 @@
         document.getElementById('editTitle').value = eAIPData[id].name;
         document.getElementById('editId').value = id;
         renderList(document.getElementById('search').value);
-        
-        // Scroll to the item in the list
         const el = document.getElementById("zone-" + id);
         if(el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
@@ -200,37 +205,28 @@
     function handleInputSource(data) {
         document.getElementById('inputGeo').value = JSON.stringify(data, null, 4);
         rawLayer.clearLayers();
-        const l = L.geoJSON(data, { style: { color: '#3b82f6', dashArray: '5,5', weight: 1 }}).addTo(rawLayer);
-        if (rawLayer.getLayers().length > 0) map.fitBounds(l.getBounds());
-
-        // AUTO-SELECT LOGIC
+        const geojson = L.geoJSON(data, { 
+            style: { color: '#3b82f6', dashArray: '5,5', weight: 2, fillOpacity: 0.1 }
+        }).addTo(rawLayer);
+        if (data.features && data.features.length > 0) map.fitBounds(geojson.getBounds());
         autoMatchZone(data);
     }
 
     function autoMatchZone(geoData) {
         const statusEl = document.getElementById('autoStatus');
         statusEl.innerText = "";
-        
-        // 1. Try to find a name in the GeoJSON properties
         let detectedName = "";
         if (geoData.features && geoData.features.length > 0) {
             detectedName = geoData.features[0].properties.name || geoData.features[0].properties.identifier || "";
         }
-
         if (!detectedName) return;
-
-        // 2. Search database for match
         const searchName = detectedName.toUpperCase();
         const match = Object.keys(eAIPData).find(id => 
             searchName.includes(id) || id.includes(searchName) || eAIPData[id].name.toUpperCase().includes(searchName)
         );
-
         if (match) {
             selectZone(match);
-            statusEl.innerText = `✔ Auto-matched to: ${match}`;
-        } else {
-            statusEl.style.color = "#ef4444";
-            statusEl.innerText = `✖ No DB match for "${detectedName}"`;
+            statusEl.innerText = `✔ Auto-matched: ${match}`;
         }
     }
 
@@ -277,7 +273,9 @@
     function updateOutput(data) {
         document.getElementById('outputGeo').value = JSON.stringify(data, null, 4);
         ed318Layer.clearLayers();
-        L.geoJSON(data, { style: { color: '#10b981', weight: 3, fillOpacity: 0.2 }}).addTo(ed318Layer);
+        L.geoJSON(data, { 
+            style: { color: '#10b981', weight: 3, fillOpacity: 0.3 }
+        }).addTo(ed318Layer);
     }
 
     function download() {
