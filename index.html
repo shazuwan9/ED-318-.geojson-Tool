@@ -69,6 +69,20 @@
             align-items: center;
         }
 
+        .header-text-stack {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header small {
+            display: block;
+            font-weight: 400;
+            text-transform: none;
+            color: #94a3b8;
+            letter-spacing: 0;
+            margin-top: 2px;
+        }
+
         .content {
             flex: 1;
             padding: 15px;
@@ -156,8 +170,11 @@
 <div class="app-container">
     <div class="panel">
         <div class="panel-header">
-            Step 1: eAIP Reference
-            <span id="matchStatus" style="color: var(--success); font-size: 10px;"></span>
+            <div class="header-text-stack">
+                Step 1: eAIP Reference
+                <small>Should auto-match data in Step 2</small>
+                <small id="matchStatus" style="color: var(--success);"></small>
+            </div>
         </div>
         <div class="content">
             <input type="text" id="search" class="search-box" placeholder="Search Database...">
@@ -175,7 +192,12 @@
     </div>
 
     <div class="panel">
-        <div class="panel-header">Step 4: Live Attribute Editor</div>
+        <div class="panel-header">
+            <div class="header-text-stack">
+                Step 4: Attribute Editor
+                <small>If Needed</small>
+            </div>
+        </div>
         <div class="content">
             <label style="font-size: 10px;">TITLE</label>
             <input type="text" id="editTitle" class="edit-input">
@@ -190,10 +212,13 @@
 
     <div class="panel">
         <div class="panel-header">
-            Step 2: Geometry Input
+            <div class="header-text-stack">
+                Step 2: Geometry Input
+                <small>Upload your file &rarr;</small>
+            </div>
             <div class="btn-group">
-                <button class="btn btn-ghost" onclick="document.getElementById('geoIn').click()">GEO</button>
-                <button class="btn btn-ghost" onclick="document.getElementById('kmlIn').click()">KML</button>
+                <button class="btn btn-ghost" onclick="document.getElementById('geoIn').click()">.geojson</button>
+                <button class="btn btn-ghost" onclick="document.getElementById('kmlIn').click()">.kml/.kmz</button>
             </div>
         </div>
         <div class="content">
@@ -205,7 +230,7 @@
     </div>
 
     <div class="panel">
-        <div class="panel-header">Step 3: Final ED-318 Output</div>
+        <div class="panel-header">Step 3: ED-318 Output</div>
         <div class="content">
             <textarea id="outputGeo" readonly></textarea>
         </div>
