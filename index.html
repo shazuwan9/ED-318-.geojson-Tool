@@ -3,150 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ED-318 .geojson Tool</title>
+    <title>ED-318 Processor</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        :root { --primary: #2563eb; --bg: #f8fafc; --accent: #10b981; --panel-border: #cbd5e1; }
-        body { font-family: system-ui, sans-serif; background: var(--bg); margin: 0; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
-        
-        header { 
-            background: #1e293b; 
-            color: white; 
-            padding: 10px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            font-size: 14px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            z-index: 1000;
+        :root {
+            --bg: #0f172a;
+            --panel: #1e293b;
+            --border: #334155;
+            --text: #f8fafc;
+            --accent: #38bdf8;
+            --success: #22c55e;
+            --warning: #f59e0b;
         }
-        .credits { font-size: 11px; font-weight: 800; color: #94a3b8; letter-spacing: 1.5px; }
-        
-        main { display: grid; grid-template-columns: 320px 1fr 350px; gap: 10px; padding: 10px; flex-grow: 1; overflow: hidden; }
-        .sidebar { display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
-        
-        .panel { background: white; border-radius: 8px; border: 1px solid var(--panel-border); display: flex; flex-direction: column; overflow: hidden; }
-        .panel-header { background: #f1f5f9; padding: 8px 12px; font-weight: 600; border-bottom: 1px solid var(--panel-border); font-size: 11px; text-transform: uppercase; color: #475569; display: flex; justify-content: space-between; align-items: center; }
-        
-        .h-fixed { height: 280px; flex-shrink: 0; }
-        
-        #map { width: 100%; height: 100%; border-radius: 8px; border: 1px solid var(--panel-border); }
-        .scroll { overflow-y: auto; flex-grow: 1; padding: 10px; }
-        textarea { width: 100%; height: 100%; border: none; resize: none; font-family: 'Fira Code', monospace; font-size: 11px; padding: 10px; box-sizing: border-box; background: #fafafa; outline: none; }
-        
-        .edit-form { padding: 15px; display: flex; flex-direction: column; gap: 10px; background: #fffbeb; flex-grow: 1; }
-        .edit-form label { font-size: 10px; font-weight: 800; color: #b45309; }
-        .edit-form input { padding: 10px; border: 1px solid #fcd34d; border-radius: 4px; font-size: 13px; font-weight: 500; }
 
-        .zone-item { padding: 10px; border-bottom: 1px solid #f1f5f9; cursor: pointer; font-size: 12px; }
-        .zone-item:hover { background: #f8fafc; }
-        .zone-item.active { background: #dbeafe; border-left: 4px solid var(--primary); font-weight: 600; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: 400px 1fr 400px;
+            grid-template-rows: 1fr 1fr;
+            height: 100vh;
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .map-container {
+            grid-row: span 2;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .panel-header {
+            background: rgba(0,0,0,0.2);
+            padding: 10px 15px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        textarea {
+            flex: 1;
+            background: #000;
+            color: #10b981;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 11px;
+            padding: 10px;
+            resize: none;
+        }
+
+        .search-box, .edit-input {
+            width: 100%;
+            padding: 8px;
+            background: #0f172a;
+            border: 1px solid var(--border);
+            color: white;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .zone-item {
+            padding: 8px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .zone-item:hover { background: #334155; }
+        .zone-item.selected { background: var(--accent); color: #000; font-weight: bold; }
+
+        .btn-group { display: flex; gap: 5px; }
         
-        .btn { padding: 10px; border-radius: 6px; cursor: pointer; border: none; font-weight: 700; font-size: 12px; transition: 0.2s; text-transform: uppercase; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-success { background: var(--accent); color: white; }
-        .btn-warn { background: #d97706; color: white; }
-        
-        .btn-upload { background: white; border: 1px solid #cbd5e1; color: #475569; padding: 4px 8px; font-size: 9px; cursor: pointer; margin-left: 4px; }
-        .btn-upload:hover { background: #f1f5f9; }
-        
-        .search-box { width: 100%; padding: 10px; border: 1px solid var(--panel-border); border-radius: 4px; margin-bottom: 8px; box-sizing: border-box; font-size: 12px; }
-        .footer { padding: 12px; border-top: 1px solid #e2e8f0; background: white; }
-        
-        .auto-msg { font-size: 10px; color: var(--accent); font-weight: bold; margin-top: 4px; }
+        .btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 11px;
+            transition: 0.2s;
+        }
+
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-success { background: var(--success); color: #000; }
+        .btn-action { background: var(--warning); color: #000; }
+        .btn-ghost { background: transparent; border: 1px solid var(--border); color: white; }
+        .btn-ghost.active { background: white; color: black; }
+
+        .layer-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--panel);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            background: #334155;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <div style="font-weight: 800; letter-spacing: 0.5px;">ED-318 .geojson Tool</div>
-    <div class="credits">CREATED BY 009</div>
-</header>
-
-<main>
-    <div class="sidebar">
-        <div class="panel h-fixed">
-            <div class="panel-header">Step 1: eAIP Database</div>
-            <div class="scroll">
-                <input type="text" id="search" class="search-box" placeholder="Search Identifier or Name...">
-                <div id="zoneList"></div>
-            </div>
+<div class="app-container">
+    <div class="panel">
+        <div class="panel-header">
+            Step 1: eAIP Reference
+            <span id="matchStatus" style="color: var(--success); font-size: 10px;"></span>
         </div>
+        <div class="content">
+            <input type="text" id="search" class="search-box" placeholder="Search Database...">
+            <div id="zoneList" style="flex: 1; overflow-y: auto;"></div>
+        </div>
+    </div>
 
-        <div class="panel" style="flex-grow: 1;">
-            <div class="panel-header">
-                Step 2: Source Input
-                <div>
-                    <button class="btn btn-upload" onclick="document.getElementById('geoPicker').click()">.GEOJSON</button>
-                    <button class="btn btn-upload" onclick="document.getElementById('kmlPicker').click()">.KML/.KMZ</button>
-                </div>
-            </div>
-            <input type="file" id="geoPicker" style="display:none" accept=".geojson,.json">
-            <input type="file" id="kmlPicker" style="display:none" accept=".kml,.kmz">
-            <textarea id="inputGeo" placeholder="Paste GeoJSON or upload KML/KMZ..."></textarea>
-            <div class="footer">
-                <div id="autoStatus" class="auto-msg"></div>
-                <button class="btn btn-primary" style="width:100%" onclick="process()">Map Data to ED-318</button>
+    <div class="panel map-container">
+        <div id="map"></div>
+        <div class="layer-controls">
+            <div style="font-size: 10px; font-weight: 800; margin-bottom: 5px;">POLYGON VISIBILITY</div>
+            <button id="toggleRaw" class="btn btn-ghost active" onclick="toggleLayer('raw')">Step 2 (Input Data)</button>
+            <button id="toggleFinal" class="btn btn-ghost active" onclick="toggleLayer('final')">Step 3 (Processed)</button>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">Step 4: Live Attribute Editor</div>
+        <div class="content">
+            <label style="font-size: 10px;">TITLE</label>
+            <input type="text" id="editTitle" class="edit-input">
+            <label style="font-size: 10px;">IDENTIFIER</label>
+            <input type="text" id="editId" class="edit-input" maxlength="7">
+            <div style="margin-top: auto; display: grid; gap: 10px;">
+                <button class="btn btn-action" onclick="applyEdits()">Apply Changes to Step 3</button>
+                <button class="btn btn-success" onclick="download()">Download Result</button>
             </div>
         </div>
     </div>
 
-    <div id="map"></div>
-
-    <div class="sidebar">
-        <div class="panel h-fixed">
-            <div class="panel-header">Step 4: Live Attribute Editor</div>
-            <div class="edit-form">
-                <div>
-                    <label>FEATURE COLLECTION TITLE</label>
-                    <input type="text" id="editTitle" style="width:100%; box-sizing:border-box; margin-top:4px;">
-                </div>
-                <div>
-                    <label>ZONE IDENTIFIER (MAX 7 CHAR)</label>
-                    <input type="text" id="editId" maxlength="7" style="width:100%; box-sizing:border-box; margin-top:4px;">
-                </div>
-                <div style="flex-grow: 1;"></div>
-                <button class="btn btn-warn" onclick="applyEdits()">Apply Changes to Step 3</button>
+    <div class="panel">
+        <div class="panel-header">
+            Step 2: Geometry Input
+            <div class="btn-group">
+                <button class="btn btn-ghost" onclick="document.getElementById('geoIn').click()">GEO</button>
+                <button class="btn btn-ghost" onclick="document.getElementById('kmlIn').click()">KML</button>
             </div>
         </div>
+        <div class="content">
+            <input type="file" id="geoIn" hidden accept=".geojson,.json">
+            <input type="file" id="kmlIn" hidden accept=".kml,.kmz">
+            <textarea id="inputGeo" placeholder="Paste or upload GeoJSON/KML..."></textarea>
+            <button class="btn btn-primary" onclick="process()">Process Geometry &rarr;</button>
+        </div>
+    </div>
 
-        <div class="panel" style="flex-grow: 1;">
-            <div class="panel-header">Step 3: Final ED-318 Result</div>
+    <div class="panel">
+        <div class="panel-header">Step 3: Final ED-318 Output</div>
+        <div class="content">
             <textarea id="outputGeo" readonly></textarea>
-            <div class="footer">
-                <button class="btn btn-success" style="width:100%" onclick="download()">Download .geojson</button>
-            </div>
         </div>
     </div>
-</main>
+</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/@tmcw/togeojson@4.5.0/dist/togeojson.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
 <script>
-    let map, rawLayer, ed318Layer, eAIPData = {};
+    let map, rawLayer, finalLayer, eAIPData = {};
     let selectedId = null;
 
-    function init() {
-        map = L.map('map').setView([4.21, 101.97], 6);
-        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-        
-        // Initialize layer groups
-        rawLayer = L.layerGroup().addTo(map);
-        ed318Layer = L.layerGroup().addTo(map);
+    const baseLayers = {
+        "Street": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OSM' }),
+        "Satellite": L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { attribution: 'Google' }),
+        "Terrain": L.tileLayer('https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', { attribution: 'Google' })
+    };
 
-        // Add Layer Control
-        const overlays = {
-            "Original Geometry (Step 2)": rawLayer,
-            "ED-318 GeoZone (Step 3)": ed318Layer
-        };
-        L.control.layers({ "OpenStreetMap": osm }, overlays, { collapsed: false }).addTo(map);
+    function init() {
+        map = L.map('map', { center: [4.21, 101.97], zoom: 6, layers: [baseLayers.Street] });
+        L.control.layers(baseLayers).addTo(map);
+        
+        rawLayer = L.layerGroup().addTo(map);
+        finalLayer = L.layerGroup().addTo(map);
 
         fetch('eAIP_lookup.json').then(r => r.json()).then(data => {
             eAIPData = data;
             renderList("");
-        });
+        }).catch(e => console.error("Database not found"));
     }
 
     function renderList(q) {
@@ -156,9 +246,8 @@
         Object.keys(eAIPData).forEach(id => {
             if(id.includes(filter) || eAIPData[id].name.toUpperCase().includes(filter)) {
                 const div = document.createElement('div');
-                div.id = "zone-" + id;
-                div.className = `zone-item ${selectedId === id ? 'active' : ''}`;
-                div.innerHTML = `<strong>${id}</strong><br><small>${eAIPData[id].name}</small>`;
+                div.className = `zone-item ${selectedId === id ? 'selected' : ''}`;
+                div.innerHTML = `<div><span class="tag">${id}</span>${eAIPData[id].name}</div>`;
                 div.onclick = () => selectZone(id);
                 list.appendChild(div);
             }
@@ -170,112 +259,100 @@
         document.getElementById('editTitle').value = eAIPData[id].name;
         document.getElementById('editId').value = id;
         renderList(document.getElementById('search').value);
-        const el = document.getElementById("zone-" + id);
-        if(el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    document.getElementById('geoPicker').onchange = (e) => {
+    function toggleLayer(type) {
+        if(type === 'raw') {
+            if(map.hasLayer(rawLayer)) { map.removeLayer(rawLayer); document.getElementById('toggleRaw').classList.remove('active'); }
+            else { map.addLayer(rawLayer); document.getElementById('toggleRaw').classList.add('active'); }
+        } else {
+            if(map.hasLayer(finalLayer)) { map.removeLayer(finalLayer); document.getElementById('toggleFinal').classList.remove('active'); }
+            else { map.addLayer(finalLayer); document.getElementById('toggleFinal').classList.add('active'); }
+        }
+    }
+
+    document.getElementById('geoIn').onchange = (e) => {
         const reader = new FileReader();
-        reader.onload = (ev) => handleInputSource(JSON.parse(ev.target.result));
+        reader.onload = (ev) => handleInput(JSON.parse(ev.target.result));
         reader.readAsText(e.target.files[0]);
     };
 
-    document.getElementById('kmlPicker').onchange = async (e) => {
+    document.getElementById('kmlIn').onchange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
+        let kmlText;
         if (file.name.endsWith('.kmz')) {
             const zip = await JSZip.loadAsync(file);
             const kmlFile = Object.values(zip.files).find(f => f.name.endsWith('.kml'));
-            const kmlText = await kmlFile.async("string");
-            convertKmlToGeoJson(kmlText);
+            kmlText = await kmlFile.async("string");
         } else {
-            const reader = new FileReader();
-            reader.onload = (ev) => convertKmlToGeoJson(ev.target.result);
-            reader.readAsText(file);
+            kmlText = await file.text();
         }
-    };
-
-    function convertKmlToGeoJson(kmlText) {
         const parser = new DOMParser();
         const kmlDom = parser.parseFromString(kmlText, "text/xml");
-        const converted = toGeoJSON.kml(kmlDom);
-        handleInputSource(converted);
-    }
+        handleInput(toGeoJSON.kml(kmlDom));
+    };
 
-    function handleInputSource(data) {
-        document.getElementById('inputGeo').value = JSON.stringify(data, null, 4);
+    function handleInput(data) {
+        document.getElementById('inputGeo').value = JSON.stringify(data, null, 2);
         rawLayer.clearLayers();
-        const geojson = L.geoJSON(data, { 
-            style: { color: '#3b82f6', dashArray: '5,5', weight: 2, fillOpacity: 0.1 }
-        }).addTo(rawLayer);
-        if (data.features && data.features.length > 0) map.fitBounds(geojson.getBounds());
-        autoMatchZone(data);
-    }
-
-    function autoMatchZone(geoData) {
-        const statusEl = document.getElementById('autoStatus');
-        statusEl.innerText = "";
-        let detectedName = "";
-        if (geoData.features && geoData.features.length > 0) {
-            detectedName = geoData.features[0].properties.name || geoData.features[0].properties.identifier || "";
+        const l = L.geoJSON(data, { style: { color: '#38bdf8', weight: 2, dashArray: '4' } }).addTo(rawLayer);
+        map.fitBounds(l.getBounds());
+        
+        let detected = "";
+        if(data.features && data.features[0].properties) {
+            detected = data.features[0].properties.name || data.features[0].properties.identifier || "";
         }
-        if (!detectedName) return;
-        const searchName = detectedName.toUpperCase();
-        const match = Object.keys(eAIPData).find(id => 
-            searchName.includes(id) || id.includes(searchName) || eAIPData[id].name.toUpperCase().includes(searchName)
-        );
-        if (match) {
-            selectZone(match);
-            statusEl.innerText = `✔ Auto-matched: ${match}`;
+        
+        if(detected) {
+            const match = Object.keys(eAIPData).find(id => 
+                detected.toUpperCase().includes(id) || id.includes(detected.toUpperCase())
+            );
+            if(match) {
+                selectZone(match);
+                document.getElementById('matchStatus').innerText = "AUTO-MATCH: " + match;
+            }
         }
     }
 
     function process() {
-        const inputStr = document.getElementById('inputGeo').value;
-        if(!selectedId || !inputStr) return alert("Select a database entry and provide input data.");
+        const input = document.getElementById('inputGeo').value;
+        if(!selectedId || !input) return;
         
-        const source = JSON.parse(inputStr);
+        const source = JSON.parse(input);
         const info = eAIPData[selectedId];
 
         const result = {
             "type": "FeatureCollection",
             "title": document.getElementById('editTitle').value,
-            "metadata": { "issued": new Date().toISOString() },
             "features": source.features.map(f => ({
                 "type": "Feature",
                 "geometry": { 
                     ...f.geometry, 
-                    "layer": { 
-                        "upper": info.upper, "upperReference": info.upperRef,
-                        "lower": info.lower, "lowerReference": info.lowerRef, "uom": "ft"
-                    } 
+                    "layer": { "upper": info.upper, "lower": info.lower, "uom": "ft" } 
                 },
                 "properties": { 
                     "identifier": document.getElementById('editId').value, 
-                    "country": "MYS", "variant": "COMMON", "type": info.type,
-                    "reason": ["OTHER"], "zoneAuthority": [{"purpose": "INFORMATION"}]
+                    "country": "MYS", "type": info.type 
                 }
             }))
         };
         updateOutput(result);
-        map.fitBounds(L.geoJSON(result).getBounds());
     }
 
     function applyEdits() {
-        const outText = document.getElementById('outputGeo').value;
-        if(!outText) return alert("Map the data first.");
-        let data = JSON.parse(outText);
+        const text = document.getElementById('outputGeo').value;
+        if(!text) return;
+        let data = JSON.parse(text);
         data.title = document.getElementById('editTitle').value;
-        data.features.forEach(f => { f.properties.identifier = document.getElementById('editId').value; });
+        data.features.forEach(f => f.properties.identifier = document.getElementById('editId').value);
         updateOutput(data);
     }
 
     function updateOutput(data) {
-        document.getElementById('outputGeo').value = JSON.stringify(data, null, 4);
-        ed318Layer.clearLayers();
-        L.geoJSON(data, { 
-            style: { color: '#10b981', weight: 3, fillOpacity: 0.3 }
-        }).addTo(ed318Layer);
+        document.getElementById('outputGeo').value = JSON.stringify(data, null, 2);
+        finalLayer.clearLayers();
+        L.geoJSON(data, { style: { color: '#22c55e', weight: 3, fillOpacity: 0.3 } }).addTo(finalLayer);
     }
 
     function download() {
