@@ -269,10 +269,11 @@
         list.innerHTML = "";
         const filter = q.toUpperCase();
         Object.keys(eAIPData).forEach(id => {
-            if(id.includes(filter) || eAIPData[id].name.toUpperCase().includes(filter)) {
+            const entryName = eAIPData[id].properties.name;
+            if(id.includes(filter) || entryName.toUpperCase().includes(filter)) {
                 const div = document.createElement('div');
                 div.className = `zone-item ${selectedId === id ? 'selected' : ''}`;
-                div.innerHTML = `<div><span class="tag">${id}</span>${eAIPData[id].name}</div>`;
+                div.innerHTML = `<div><span class="tag">${id}</span>${entryName}</div>`;
                 div.onclick = () => selectZone(id);
                 list.appendChild(div);
             }
@@ -281,7 +282,7 @@
 
     function selectZone(id) {
         selectedId = id;
-        document.getElementById('editTitle').value = eAIPData[id].name;
+        document.getElementById('editTitle').value = eAIPData[id].properties.name;
         document.getElementById('editId').value = id;
         renderList(document.getElementById('search').value);
     }
@@ -354,11 +355,15 @@
                 "type": "Feature",
                 "geometry": { 
                     ...f.geometry, 
-                    "layer": { "upper": info.upper, "lower": info.lower, "uom": "ft" } 
+                    "layer": { ...info.layer } 
                 },
                 "properties": { 
                     "identifier": document.getElementById('editId').value, 
-                    "country": "MYS", "type": info.type 
+                    "country": info.properties.country, 
+                    "type": info.properties.type,
+                    "purpose": info.properties.purpose,
+                    "reason": info.properties.reason,
+                    "restrictionConditions": info.properties.restrictionConditions
                 }
             }))
         };

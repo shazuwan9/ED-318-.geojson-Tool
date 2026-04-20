@@ -1,1394 +1,2206 @@
 {
     "PROHIBITED AREAS": {
-        "name": "PROHIBITED AREAS",
-        "upper": 0,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 0,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "PROHIBITED AREAS",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMP220": {
-        "name": "PUSPATI",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "PUSPATI",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMP228": {
-        "name": "BUKIT SERENE",
-        "upper": 5000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "BUKIT SERENE",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMP242": {
-        "name": "WMP242",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMP242",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBP503": {
-        "name": "WBP503",
-        "upper": 3000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBP503",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBP504": {
-        "name": "JERUDONG",
-        "upper": 500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "JERUDONG",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBP506": {
-        "name": "WBP506",
-        "upper": 3000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBP506",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBP602": {
-        "name": "WBP602",
-        "upper": 500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBP602",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "RESTRICTED AREAS": {
-        "name": "RESTRICTED AREAS",
-        "upper": 0,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 0,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "RESTRICTED AREAS",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR101A": {
-        "name": "WMR101A",
-        "upper": 3000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR101A",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR101B": {
-        "name": "WMR101B",
-        "upper": 3000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR101B",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR102B": {
-        "name": "WMR102B",
-        "upper": 370,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 370,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR102B",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR103B": {
-        "name": "WMR103B",
-        "upper": 230,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 230,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR103B",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR104": {
-        "name": "WMR104",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 3000,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 3000,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR104",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR105": {
-        "name": "WMR105",
-        "upper": 235,
-        "upperRef": "AGL",
-        "lower": 6500,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 235,
+            "upperRef": "AGL",
+            "lower": 6500,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR105",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR106": {
-        "name": "WMR106",
-        "upper": 550,
-        "upperRef": "AGL",
-        "lower": 6500,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 550,
+            "upperRef": "AGL",
+            "lower": 6500,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR106",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "LINK CORRIDOR (WMR105-WMR106)": {
-        "name": "LINK CORRIDOR (WMR105-WMR106)",
-        "upper": 200,
-        "upperRef": "AGL",
-        "lower": 130,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 200,
+            "upperRef": "AGL",
+            "lower": 130,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "LINK CORRIDOR (WMR105-WMR106)",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR107": {
-        "name": "WMR107",
-        "upper": 7000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 7000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR107",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR108": {
-        "name": "WMR108",
-        "upper": 7000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 7000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR108",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR109": {
-        "name": "WMR109",
-        "upper": 500,
-        "upperRef": "AGL",
-        "lower": 8000,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 500,
+            "upperRef": "AGL",
+            "lower": 8000,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR109",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR223": {
-        "name": "KANGAR KAHANG",
-        "upper": 10000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "KANGAR KAHANG",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR225": {
-        "name": "NORTH",
-        "upper": 3500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "NORTH",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR225A": {
-        "name": "WMR225A",
-        "upper": 2000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR225A",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR225B": {
-        "name": "WMR225B",
-        "upper": 2000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR225B",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR226": {
-        "name": "WEST",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WEST",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR229": {
-        "name": "WMR229",
-        "upper": 1500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 1500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR229",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR236": {
-        "name": "WMR236",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR236",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR237": {
-        "name": "WMR237",
-        "upper": 1500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 1500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR237",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR238": {
-        "name": "WMR238",
-        "upper": 3000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR238",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR239A": {
-        "name": "WMR239A",
-        "upper": 5000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR239A",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR239B": {
-        "name": "WMR239B",
-        "upper": 5000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR239B",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR240A": {
-        "name": "WMR240A",
-        "upper": 5500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR240A",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR240B": {
-        "name": "WMR240B",
-        "upper": 5000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR240B",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR302A": {
-        "name": "WMR302A",
-        "upper": 460,
-        "upperRef": "AGL",
-        "lower": 6500,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 460,
+            "upperRef": "AGL",
+            "lower": 6500,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR302A",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR302B": {
-        "name": "WMR302B",
-        "upper": 460,
-        "upperRef": "AGL",
-        "lower": 6500,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 460,
+            "upperRef": "AGL",
+            "lower": 6500,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR302B",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR403": {
-        "name": "WMR403",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR403",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR404": {
-        "name": "WMR404",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR404",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR405": {
-        "name": "WMR405",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR405",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR406": {
-        "name": "WMR406",
-        "upper": 200,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 200,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR406",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR407": {
-        "name": "WMR407",
-        "upper": 200,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 200,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR407",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR408": {
-        "name": "WMR408",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR408",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR409": {
-        "name": "GURUN",
-        "upper": 3000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "GURUN",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR415": {
-        "name": "PENANG",
-        "upper": 4000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 4000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "PENANG",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR416": {
-        "name": "WMR416",
-        "upper": 3000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR416",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR416A": {
-        "name": "WMR416A",
-        "upper": 3000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR416A",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR416B": {
-        "name": "WMR416B",
-        "upper": 3000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR416B",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR416C": {
-        "name": "WMR416C",
-        "upper": 3000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR416C",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR417": {
-        "name": "WMR417",
-        "upper": 5000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR417",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR418": {
-        "name": "WMR418",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR418",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMR419": {
-        "name": "WMR419",
-        "upper": 5000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMR419",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WSR2": {
-        "name": "TENGAH CORRIDOR",
-        "upper": 300,
-        "upperRef": "AGL",
-        "lower": 3000,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 300,
+            "upperRef": "AGL",
+            "lower": 3000,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "TENGAH CORRIDOR",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR501": {
-        "name": "LABUAN",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "LABUAN",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR508": {
-        "name": "SANDAKAN",
-        "upper": 3000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "SANDAKAN",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR509": {
-        "name": "SANDAKAN",
-        "upper": 3000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "SANDAKAN",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR510": {
-        "name": "SANDAKAN",
-        "upper": 3000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "SANDAKAN",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR511": {
-        "name": "SANDAKAN",
-        "upper": 3000,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 3000,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "SANDAKAN",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR517": {
-        "name": "WBR517",
-        "upper": 400,
-        "upperRef": "AGL",
-        "lower": 5000,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 400,
+            "upperRef": "AGL",
+            "lower": 5000,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR517",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "AIR CORRIDOR ASSOCIATED WITH WBR517": {
-        "name": "AIR CORRIDOR ASSOCIATED WITH WBR517",
-        "upper": 12500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 12500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "AIR CORRIDOR ASSOCIATED WITH WBR517",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR518": {
-        "name": "WBR518",
-        "upper": 12000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 12000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR518",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR519": {
-        "name": "WBR519",
-        "upper": 40000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 40000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR519",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR520": {
-        "name": "WBR520",
-        "upper": 12000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 12000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR520",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR522": {
-        "name": "WBR522",
-        "upper": 550,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 550,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR522",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR523": {
-        "name": "WBR523",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR523",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR524": {
-        "name": "WBR524",
-        "upper": 1000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 1000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR524",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR525": {
-        "name": "WBR525",
-        "upper": 4000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 4000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR525",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR560/520": {
-        "name": "Lumut Gas Plant",
-        "upper": 1500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 1500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "Lumut Gas Plant",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR601": {
-        "name": "KUCHING",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "KUCHING",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR603": {
-        "name": "WBR603",
-        "upper": 150,
-        "upperRef": "AGL",
-        "lower": 6000,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 150,
+            "upperRef": "AGL",
+            "lower": 6000,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR603",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR604": {
-        "name": "WBR604",
-        "upper": 150,
-        "upperRef": "AGL",
-        "lower": 6000,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 150,
+            "upperRef": "AGL",
+            "lower": 6000,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR604",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR605": {
-        "name": "WBR605",
-        "upper": 2500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR605",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR606": {
-        "name": "WBR606",
-        "upper": 12000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 12000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR606",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR607": {
-        "name": "WBR607",
-        "upper": 5000,
-        "upperRef": "AMSL",
-        "lower": 1500,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5000,
+            "upperRef": "AMSL",
+            "lower": 1500,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR607",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR608": {
-        "name": "WBR608",
-        "upper": 5000,
-        "upperRef": "AMSL",
-        "lower": 1500,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5000,
+            "upperRef": "AMSL",
+            "lower": 1500,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR608",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR609": {
-        "name": "WBR609",
-        "upper": 6000,
-        "upperRef": "AMSL",
-        "lower": 1500,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 6000,
+            "upperRef": "AMSL",
+            "lower": 1500,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR609",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR610": {
-        "name": "WBR610",
-        "upper": 6000,
-        "upperRef": "AMSL",
-        "lower": 1500,
-        "lowerRef": "AMSL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 6000,
+            "upperRef": "AMSL",
+            "lower": 1500,
+            "lowerRef": "AMSL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR610",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBR611": {
-        "name": "WBR611",
-        "upper": 25,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 25,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBR611",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "DANGER AREAS": {
-        "name": "DANGER AREAS",
-        "upper": 0,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 0,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "DANGER AREAS",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD8": {
-        "name": "CHINA SEA NORTH RANGE",
-        "upper": 550,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 550,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "CHINA SEA NORTH RANGE",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD12": {
-        "name": "AREA JULIET",
-        "upper": 550,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 550,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "AREA JULIET",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD21": {
-        "name": "AREA GOLF",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "AREA GOLF",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD105 PENOR": {
-        "name": "WMD105 PENOR",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMD105 PENOR",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD221": {
-        "name": "ASAHAN",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "ASAHAN Test",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD222": {
-        "name": "ASAHAN",
-        "upper": 11000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 11000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "ASAHAN",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD224": {
-        "name": "MALAYSIAN NAVAL EXERCISE AREA",
-        "upper": 12000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 12000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "MALAYSIAN NAVAL EXERCISE AREA",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD227": {
-        "name": "PULAU YU",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "PULAU YU",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD230": {
-        "name": "ULU TIRAM (SOUTH)",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "ULU TIRAM (SOUTH)",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD231": {
-        "name": "ULU TIRAM (NORTH)",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "ULU TIRAM (NORTH)",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD411": {
-        "name": "BUTTERWORTH",
-        "upper": 6500,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 6500,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "BUTTERWORTH",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD412A": {
-        "name": "BUTTERWORTH",
-        "upper": 500,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 500,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "BUTTERWORTH",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD414": {
-        "name": "SONG SONG",
-        "upper": 5500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 5500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "SONG SONG",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD419": {
-        "name": "WMD419",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMD419",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD420": {
-        "name": "WMD420",
-        "upper": 10,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMD420",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WMD421": {
-        "name": "WMD421",
-        "upper": 0,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 0,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WMD421",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WSD11": {
-        "name": "PASIR LABA",
-        "upper": 1300,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 1300,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "PASIR LABA",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WSD13": {
-        "name": "AREA KILO",
-        "upper": 550,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 550,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "AREA KILO",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WSD14": {
-        "name": "AREA LIMA",
-        "upper": 550,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 550,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "AREA LIMA",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WSD15": {
-        "name": "AREA MIKE",
-        "upper": 550,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 550,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "AREA MIKE",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WSD20": {
-        "name": "AREA HOTEL",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "AREA HOTEL",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WSD44": {
-        "name": "WSD44",
-        "upper": 550,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 550,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WSD44",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WSD45": {
-        "name": "WSD45",
-        "upper": 550,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 550,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WSD45",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD505": {
-        "name": "BALAMBANGAN",
-        "upper": 150,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 150,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "BALAMBANGAN",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "LINK ROUTE ECHO 1 TRANSITING CORRIDOR FOR WBD505": {
-        "name": "LINK ROUTE ECHO 1 TRANSITING CORRIDOR FOR WBD505",
-        "upper": 12000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 12000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "LINK ROUTE ECHO 1 TRANSITING CORRIDOR FOR WBD505",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "LINK ROUTE ECHO 2 TRANSITING CORRIDOR WBD505": {
-        "name": "LINK ROUTE ECHO 2 TRANSITING CORRIDOR WBD505",
-        "upper": 12000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 12000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "LINK ROUTE ECHO 2 TRANSITING CORRIDOR WBD505",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD507": {
-        "name": "WBD507",
-        "upper": 1000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 1000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBD507",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD508": {
-        "name": "WBD508",
-        "upper": 500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBD508",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD509": {
-        "name": "BINTURAN RANGE",
-        "upper": 1000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 1000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "BINTURAN RANGE",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD509A": {
-        "name": "BUKIT AGOK FIRING COMPLEX",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "BUKIT AGOK FIRING COMPLEX",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD510": {
-        "name": "LUMUT RANGE",
-        "upper": 1000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 1000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "LUMUT RANGE",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD511": {
-        "name": "BERAKAS RANGE",
-        "upper": 1000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 1000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "BERAKAS RANGE",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD512": {
-        "name": "BERAKAS RANGE",
-        "upper": 750,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 750,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "BERAKAS RANGE",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD513": {
-        "name": "TUTONG RANGE",
-        "upper": 500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "TUTONG RANGE",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD514": {
-        "name": "WBD514",
-        "upper": 500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBD514",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD515": {
-        "name": "WBD515",
-        "upper": 500,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 500,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBD515",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD521": {
-        "name": "WBD521",
-        "upper": 400,
-        "upperRef": "AGL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 400,
+            "upperRef": "AGL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBD521",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD526": {
-        "name": "WBD526",
-        "upper": 10000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 10000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBD526",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     },
     "WBD527": {
-        "name": "WBD527",
-        "upper": 2000,
-        "upperRef": "AMSL",
-        "lower": 0,
-        "lowerRef": "AGL",
-        "type": "REQ_AUTHORIZATION",
-        "country": "MYS",
-        "reason": [
-            "OTHER"
-        ]
+        "layer": {
+            "upper": 2000,
+            "upperRef": "AMSL",
+            "lower": 0,
+            "lowerRef": "AGL",
+            "uom": "ft"
+        },
+        "properties": {
+            "name": "WBD527",
+            "type": "CONDITIONAL",
+            "purpose": "AUTHORIZATION",
+            "country": "MYS",
+            "reason": [
+                "OTHER"
+            ],
+            "restrictionConditions": "Test"
+        }
     }
 }
