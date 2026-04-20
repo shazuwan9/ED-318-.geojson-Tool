@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eAIP Master Database</title>
+    <style>
+        :root {
+            --bg: #0f172a; --panel: #1e293b; --border: #334155;
+            --text: #f8fafc; --accent: #38bdf8; --danger: #ef4444; --success: #22c55e;
+        }
+        body {
+            font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text);
+            margin: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden;
+        }
+
+        header {
+            padding: 15px 25px; background: var(--panel); border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .status-bar {
+            background: #000; padding: 6px 25px; display: flex; gap: 25px; font-size: 11px; border-bottom: 1px solid var(--border);
+        }
+        .indicator { padding: 2px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+        .is-saved { background: var(--success); color: #000; }
+        .is-unsaved { background: var(--danger); color: #fff; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+        .tabs { display: flex; background: var(--panel); padding: 10px 25px 0 25px; gap: 5px; flex-shrink: 0; }
+        .tab {
+            padding: 10px 20px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            border-bottom: none; border-radius: 6px 6px 0 0; cursor: pointer; font-size: 13px; color: #94a3b8; transition: 0.2s;
+        }
+        .tab.active { background: var(--bg); color: var(--accent); border-top: 2px solid var(--accent); font-weight: bold; }
+
+        .main-content { flex: 1; padding: 20px; overflow-y: auto; background: var(--bg); }
+        table { width: 100%; border-collapse: collapse; background: var(--panel); border-radius: 8px; }
+        thead { position: sticky; top: 0; z-index: 10; }
+        th { background: #0f172a; text-align: left; padding: 12px 15px; font-size: 11px; text-transform: uppercase; color: #94a3b8; border-bottom: 2px solid var(--border); }
+        td { padding: 12px 15px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: middle; }
+        tr:hover { background: rgba(56, 189, 248, 0.05); cursor: pointer; }
+
+        .modal-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 100;
+        }
+        .modal { 
+            background: var(--panel); width: 650px; max-height: 90vh; overflow-y: auto;
+            padding: 30px; border-radius: 12px; border: 1px solid var(--border);
+        }
+
+        .section-label { color: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: 1px; display: block; margin: 15px 0 10px 0; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 10px; }
+        label { display: block; font-size: 10px; font-weight: bold; color: #94a3b8; margin-bottom: 5px; text-transform: uppercase; }
+        input, select, textarea { 
+            width: 100%; padding: 10px; background: var(--bg); border: 1px solid var(--border); 
+            color: white; border-radius: 6px; box-sizing: border-box; font-size: 13px;
+        }
+        
+        input:disabled, select:disabled { opacity: 0.5; cursor: not-allowed; background: #0f172a; }
+
+        .reason-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 8px; background: var(--bg); padding: 12px; border-radius: 6px; border: 1px solid var(--border);
+        }
+        .checkbox-item { display: flex; align-items: center; font-size: 11px; gap: 8px; cursor: pointer; }
+        .checkbox-item input { width: auto; margin: 0; }
+
+        .conditional-box { 
+            background: rgba(56, 189, 248, 0.05); border: 1px dashed var(--accent); 
+            padding: 15px; border-radius: 6px; margin-bottom: 15px; display: none; 
+        }
+
+        .btn { padding: 10px 20px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-success { background: var(--success); color: #000; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-ghost { background: transparent; border: 1px solid var(--border); color: #fff; }
+        
+        .tag-type { font-size: 10px; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-family: monospace; }
+        .type-wmp { background: #be185d; color: white; }
+        .type-wmr { background: #b45309; color: white; }
+        .type-wmd { background: #1e40af; color: white; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2 style="margin:0; font-size: 18px; color: var(--accent);">eAIP Master Database</h2>
+    <div style="display: flex; gap: 10px;">
+        <input type="file" id="fileInput" style="display:none" onchange="loadFile(event)">
+        <button class="btn btn-ghost" onclick="document.getElementById('fileInput').click()">📂 Open JSON</button>
+        <button class="btn btn-success" onclick="downloadJSON()">💾 Export to Disk</button>
+    </div>
+</header>
+
+<div class="status-bar">
+    <span>FILE: <strong id="fileNameDisplay">None Loaded</strong></span>
+    <span>STATUS: <span id="saveStatus" class="indicator">Waiting</span></span>
+    <span>TOTAL RECORDS: <strong id="countDisplay">0</strong></span>
+</div>
+
+<div class="tabs">
+    <div class="tab active" onclick="switchTab('WMP', this)">PROHIBITED (WMP)</div>
+    <div class="tab" onclick="switchTab('WMR', this)">RESTRICTED (WMR)</div>
+    <div class="tab" onclick="switchTab('WMD', this)">DANGER (WMD)</div>
+    <div class="tab" onclick="switchTab('OTHER', this)">OTHERS</div>
+    <button class="btn btn-primary" style="margin-left: auto; margin-bottom: 5px;" onclick="createNew()">+ Add New Entry</button>
+</div>
+
+<div class="main-content">
+    <table id="mainTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Purpose</th>
+                <th>Limits (UOM)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 id="modalTitle" style="margin:0">Edit Entry</h3>
+            <button class="btn btn-danger" id="deleteBtn" style="font-size: 11px;" onclick="deleteEntry()">Delete Record</button>
+        </div>
+        
+        <span class="section-label">IDENTIFICATION</span>
+        <div class="grid-2">
+            <div>
+                <label>Identifier (Key) - Max 7 Chars</label>
+                <input type="text" id="editKey" maxlength="7" placeholder="WMPXXX">
+            </div>
+            <div><label>Full Name</label><input type="text" id="editName"></div>
+        </div>
+
+        <span class="section-label">LAYER ATTRIBUTES</span>
+        <div class="grid-2">
+            <div>
+                <label>Upper Limit | Ref</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="number" id="editUpper">
+                    <select id="editUpperRef"><option>AGL</option><option>AMSL</option><option>WGS84</option></select>
+                </div>
+            </div>
+            <div>
+                <label>Lower Limit | Ref</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="number" id="editLower">
+                    <select id="editLowerRef"><option>AGL</option><option>AMSL</option><option>WGS84</option></select>
+                </div>
+            </div>
+        </div>
+        <div style="width: 49%;"><label>UOM</label><select id="editUom"><option>ft</option><option>m</option></select></div>
+
+        <span class="section-label">PROPERTIES</span>
+        <div class="grid-2">
+            <div><label>Zone Type</label>
+                <select id="editType" onchange="handleTypeChange()">
+                    <option value="PROHIBITED">PROHIBITED</option>
+                    <option value="REQ_AUTHORIZATION">REQ_AUTHORIZATION</option>
+                    <option value="USPACE">USPACE</option>
+                    <option value="CONDITIONAL">CONDITIONAL</option>
+                    <option value="NO_RESTRICTION">NO_RESTRICTION</option>
+                </select>
+            </div>
+            <div><label>Purpose</label>
+                <select id="editPurpose">
+                    <option value="AUTHORIZATION">AUTHORIZATION</option>
+                    <option value="NOTIFICATION">NOTIFICATION</option>
+                    <option value="INFORMATION">INFORMATION</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="conditionalGroup" class="conditional-box">
+            <label>Restriction Conditions</label>
+            <textarea id="editRestriction" placeholder="Enter conditions string..."></textarea>
+        </div>
+
+        <label>Reason Categories</label>
+        <div class="reason-grid" id="reasonGrid">
+            <label class="checkbox-item"><input type="checkbox" value="AIR_TRAFFIC"> AIR_TRAFFIC</label>
+            <label class="checkbox-item"><input type="checkbox" value="SENSITIVE"> SENSITIVE</label>
+            <label class="checkbox-item"><input type="checkbox" value="PRIVACY"> PRIVACY</label>
+            <label class="checkbox-item"><input type="checkbox" value="POPULATION"> POPULATION</label>
+            <label class="checkbox-item"><input type="checkbox" value="NATURE"> NATURE</label>
+            <label class="checkbox-item"><input type="checkbox" value="NOISE"> NOISE</label>
+            <label class="checkbox-item"><input type="checkbox" value="EMERGENCY"> EMERGENCY</label>
+            <label class="checkbox-item"><input type="checkbox" value="DAR"> DAR</label>
+            <label class="checkbox-item"><input type="checkbox" value="OTHER"> OTHER</label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px; border-top: 1px solid var(--border); padding-top: 20px;">
+            <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="updateMemory()">Apply Changes</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let db = {};
+    let currentTab = 'WMP';
+    let currentEditingKey = null;
+    let fileName = "eAIP_lookup.json";
+
+    function setStatus(dirty) {
+        const el = document.getElementById('saveStatus');
+        el.innerText = dirty ? "Unsaved" : "Synced";
+        el.className = `indicator ${dirty ? 'is-unsaved' : 'is-saved'}`;
+    }
+
+    // Combined handler for Type changes
+    function handleTypeChange() {
+        const typeSelect = document.getElementById('editType');
+        const purposeSelect = document.getElementById('editPurpose');
+        const condBox = document.getElementById('conditionalGroup');
+
+        // Lock Purpose if REQ_AUTHORIZATION
+        if (typeSelect.value === "REQ_AUTHORIZATION") {
+            purposeSelect.value = "AUTHORIZATION";
+            purposeSelect.disabled = true;
+        } else {
+            purposeSelect.disabled = false;
+        }
+
+        // Toggle Conditional Box
+        condBox.style.display = (typeSelect.value === 'CONDITIONAL') ? 'block' : 'none';
+    }
+
+    function loadFile(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        fileName = file.name;
+        document.getElementById('fileNameDisplay').innerText = fileName;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            db = JSON.parse(e.target.result);
+            renderTable();
+            setStatus(false);
+        };
+        reader.readAsText(file);
+    }
+
+    function switchTab(tab, el) {
+        currentTab = tab;
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+        renderTable();
+    }
+
+    function renderTable() {
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = "";
+        const keys = Object.keys(db).sort();
+
+        keys.forEach(key => {
+            const entry = db[key];
+            const isWMP = key.startsWith('WMP');
+            const isWMR = key.startsWith('WMR');
+            const isWMD = key.startsWith('WMD');
+            
+            let match = (currentTab === 'WMP' && isWMP) || (currentTab === 'WMR' && isWMR) || (currentTab === 'WMD' && isWMD) || (currentTab === 'OTHER' && !isWMP && !isWMR && !isWMD);
+
+            if (match) {
+                // Support both flat and nested structures for viewing
+                const layer = entry.layer || entry;
+                const props = entry.properties || entry;
+                const tr = document.createElement('tr');
+                tr.onclick = () => openModal(key);
+                tr.innerHTML = `
+                    <td><span class="tag-type type-${key.substring(0,3).toLowerCase()}">${key}</span></td>
+                    <td>${props.name || ''}</td>
+                    <td>${props.type || ''}</td>
+                    <td>${props.purpose || 'AUTHORIZATION'}</td>
+                    <td>${layer.lower}-${layer.upper} ${layer.uom || 'ft'}</td>
+                    <td><button class="btn btn-ghost" style="padding: 2px 10px; font-size: 10px;">Edit</button></td>
+                `;
+                tbody.appendChild(tr);
+            }
+        });
+        document.getElementById('countDisplay').innerText = Object.keys(db).length;
+    }
+
+    function openModal(key) {
+        currentEditingKey = key;
+        const entry = db[key] || { layer: {}, properties: {} };
+        const layer = entry.layer || entry;
+        const props = entry.properties || entry;
+
+        document.getElementById('modalTitle').innerText = key ? `Edit: ${key}` : "New Entry";
+        document.getElementById('editKey').value = key || "";
+        document.getElementById('editName').value = props.name || "";
+        document.getElementById('editUpper').value = layer.upper || 0;
+        document.getElementById('editUpperRef').value = layer.upperRef || "AGL";
+        document.getElementById('editLower').value = layer.lower || 0;
+        document.getElementById('editLowerRef').value = layer.lowerRef || "AGL";
+        document.getElementById('editUom').value = layer.uom || "ft";
+        document.getElementById('editType').value = props.type || "PROHIBITED";
+        document.getElementById('editPurpose').value = props.purpose || "AUTHORIZATION";
+        document.getElementById('editRestriction').value = props.restrictionConditions || "";
+        
+        const reasons = Array.isArray(props.reason) ? props.reason : [props.reason || "OTHER"];
+        document.querySelectorAll('#reasonGrid input').forEach(cb => cb.checked = reasons.includes(cb.value));
+
+        handleTypeChange(); // Ensure locks/visibility are set correctly on open
+        document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
+
+    function updateMemory() {
+        const newKey = document.getElementById('editKey').value.trim().toUpperCase();
+        if (!newKey) { alert("Identifier is required"); return; }
+        if (newKey.length > 7) { alert("Identifier must be max 7 characters"); return; }
+        
+        if (currentEditingKey && currentEditingKey !== newKey) delete db[currentEditingKey];
+
+        const type = document.getElementById('editType').value;
+        const purpose = document.getElementById('editPurpose').value; // disabled values are still accessible via JS
+        const checkedReasons = Array.from(document.querySelectorAll('#reasonGrid input:checked')).map(cb => cb.value);
+
+        // Always save in Categorized/Nested format
+        db[newKey] = {
+            layer: {
+                upper: parseInt(document.getElementById('editUpper').value),
+                upperRef: document.getElementById('editUpperRef').value,
+                lower: parseInt(document.getElementById('editLower').value),
+                lowerRef: document.getElementById('editLowerRef').value,
+                uom: document.getElementById('editUom').value
+            },
+            properties: {
+                name: document.getElementById('editName').value,
+                type: type,
+                purpose: purpose,
+                country: "MYS",
+                reason: checkedReasons.length > 0 ? checkedReasons : ["OTHER"],
+                ...(type === 'CONDITIONAL' && { restrictionConditions: document.getElementById('editRestriction').value })
+            }
+        };
+
+        closeModal(); setStatus(true); renderTable();
+    }
+
+    function deleteEntry() {
+        if (!currentEditingKey || !confirm(`Delete ${currentEditingKey}?`)) return;
+        delete db[currentEditingKey];
+        closeModal(); setStatus(true); renderTable();
+    }
+
+    function createNew() { openModal(''); }
+
+    function downloadJSON() {
+        const blob = new Blob([JSON.stringify(db, null, 4)], {type: "application/json"});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = fileName;
+        a.click();
+        setStatus(false);
+    }
+</script>
+</body>
+</html>
