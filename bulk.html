@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ED-318 Bulk Processor (Batch Mode)</title>
+    <title>ED-318 Processor (Bulk Mode)</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
@@ -68,7 +68,6 @@
 <body>
 
 <div class="app-container">
-    
     <div class="panel" style="grid-row: 1 / span 2;">
         <div class="panel-header">Batch Processing Queue <small id="count">0 Files</small></div>
         <div class="content">
@@ -121,12 +120,10 @@
     let map, mapLayer;
     const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzRIq_ry9RBWvhRIkT4JUa1n8PmFWeZvBogbePE1UFnVubTEu3mdSTD4QC8DNlBDUU/exec";
 
-    // Initialize Map
     map = L.map('map').setView([4.21, 101.97], 6);
     L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}').addTo(map);
     mapLayer = L.featureGroup().addTo(map);
 
-    // Initial Database Fetch
     fetch(SHEET_API_URL).then(res => res.json()).then(data => {
         Object.values(data).forEach(entry => {
             database[entry.properties.identifier.toUpperCase()] = entry;
@@ -134,15 +131,12 @@
         log("Database Connected: " + Object.keys(database).length + " rules cached.");
     }).catch(err => log("Database Error: " + err.message));
 
-    // UI Trigger Logic
     function updateButtonStates() {
         const processBtn = document.getElementById('processBtn');
         const downloadBtn = document.getElementById('downloadBtn');
         
-        // Process button: Enabled if there's at least 1 file
         processBtn.disabled = queue.length === 0;
 
-        // Download button: Enabled only if there are items AND all processable items are done
         const hasItems = queue.length > 0;
         const allProcessed = queue.every(item => item.status === 'PROCESSED' || item.status === 'UNMATCHED');
         const atLeastOneSuccess = queue.some(item => item.status === 'PROCESSED');
@@ -150,10 +144,12 @@
         downloadBtn.disabled = !(hasItems && allProcessed && atLeastOneSuccess);
     }
 
-    // Drag & Drop
     const dropZone = document.getElementById('dropZone');
-    dropZone.onclick = () => document.getElementById('fileIn').click();
-    document.getElementById('fileIn').onchange = (e) => handleFiles(e.target.files);
+    const fileInput = document.getElementById('fileIn');
+    
+    dropZone.onclick = () => fileInput.click();
+    fileInput.onchange = (e) => handleFiles(e.target.files);
+    
     dropZone.ondragover = (e) => { e.preventDefault(); dropZone.classList.add('hover'); };
     dropZone.ondragleave = () => dropZone.classList.remove('hover');
     dropZone.ondrop = (e) => {
@@ -163,7 +159,9 @@
     };
 
     async function handleFiles(files) {
+        if (!files || files.length === 0) return;
         log(`Loading ${files.length} file(s)...`);
+        
         for (let file of files) {
             try {
                 let geojson = null;
@@ -171,7 +169,8 @@
                     let kmlText = "";
                     if(file.name.endsWith('.kmz')) {
                         const zip = await JSZip.loadAsync(file);
-                        kmlText = await zip.file(/\.kml$/i)[0].async("string");
+                        const kmlFile = Object.values(zip.files).find(f => f.name.toLowerCase().endsWith('.kml'));
+                        if (kmlFile) kmlText = await kmlFile.async("string");
                     } else {
                         kmlText = await file.text();
                     }
@@ -220,7 +219,11 @@
             if (item.matchedId && database[item.matchedId]) {
                 const dbEntry = database[item.matchedId];
                 const now = new Date().toISOString().split('.')[0] + "Z";
-                
+                const baseProps = { ...dbEntry.properties };
+                if (baseProps.type !== 'CONDITIONAL') {
+                    delete baseProps.restrictionConditions;
+                }
+
                 item.processedData = {
                     "type": "FeatureCollection",
                     "title": dbEntry.item,
@@ -231,7 +234,7 @@
                             ...f.geometry,
                             "layer": dbEntry.layer 
                         },
-                        "properties": dbEntry.properties
+                        "properties": baseProps
                     }))
                 };
                 
@@ -270,6 +273,7 @@
 
     function resetQueue() {
         queue = [];
+        fileInput.value = "";
         mapLayer.clearLayers();
         renderQueue();
         updateButtonStates();
