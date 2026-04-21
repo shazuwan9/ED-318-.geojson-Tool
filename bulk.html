@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ED-318 Bulk Processor (Batch Mode)</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --bg: #0f172a; --panel: #1e293b; --border: #334155;
+            --text: #f8fafc; --accent: #38bdf8; --success: #22c55e;
+            --warning: #f59e0b; --danger: #ef4444;
+        }
+
+        body, html { margin: 0; padding: 0; height: 100vh; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            grid-template-rows: 1fr 200px; 
+            height: 100vh; gap: 12px; padding: 12px; box-sizing: border-box;
+        }
+
+        .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; display: flex; flex-direction: column; overflow: hidden; }
+        
+        .panel-header {
+            background: rgba(0,0,0,0.2); padding: 10px 15px; font-size: 11px; font-weight: 700;
+            text-transform: uppercase; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; color: var(--accent);
+        }
+
+        .content { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+
+        .drop-zone {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+            background: rgba(0,0,0,0.2);
+        }
+        .drop-zone.hover { border-color: var(--accent); background: rgba(56, 189, 248, 0.05); }
+
+        table { width: 100%; border-collapse: collapse; font-size: 11px; }
+        th { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); color: #94a3b8; }
+        td { padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        .status-pill { padding: 2px 6px; border-radius: 10px; font-size: 9px; font-weight: bold; }
+        .status-ready { background: #334155; color: var(--accent); border: 1px solid var(--accent); }
+        .status-processed { background: var(--success); color: #000; }
+        .status-unmatched { background: var(--danger); color: #fff; }
+
+        .btn { padding: 10px; border-radius: 4px; border: none; cursor: pointer; font-weight: 600; font-size: 11px; text-transform: uppercase; transition: opacity 0.2s; }
+        .btn:disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(1); }
+        
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-success { background: var(--success); color: #000; }
+        .btn-ghost { background: transparent; border: 1px solid var(--border); color: #94a3b8; margin-top: 5px; }
+
+        #map { width: 100%; height: 100%; }
+        .log-container { background: #000; font-family: monospace; font-size: 10px; color: #10b981; padding: 10px; height: 100%; overflow-y: auto; }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    
+    <div class="panel" style="grid-row: 1 / span 2;">
+        <div class="panel-header">Batch Processing Queue <small id="count">0 Files</small></div>
+        <div class="content">
+            <div id="dropZone" class="drop-zone">
+                <div style="font-size: 20px; margin-bottom: 5px;">📦</div>
+                <div>Drop Spatial Files (.kml, .kmz, .geojson)</div>
+                <input type="file" id="fileIn" multiple hidden accept=".kml,.kmz,.geojson,.json">
+            </div>
+
+            <div style="flex: 1; overflow-y: auto; border: 1px solid var(--border); border-radius: 4px;">
+                <table id="queueTable">
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>ID Match</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="queueBody"></tbody>
+                </table>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="btn btn-primary" id="processBtn" disabled onclick="processAll()">Process Matched Files</button>
+                <button class="btn btn-success" id="downloadBtn" disabled onclick="downloadZip()">Download .ZIP Bundle</button>
+                <button class="btn btn-ghost" onclick="resetQueue()">Clear Queue</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div id="map"></div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">Log Output</div>
+        <div class="log-container" id="log">
+            [SYS] Initializing...
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/@tmcw/togeojson@4.5.0/dist/togeojson.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script>
+    let queue = [];
+    let database = {};
+    let map, mapLayer;
+    const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzRIq_ry9RBWvhRIkT4JUa1n8PmFWeZvBogbePE1UFnVubTEu3mdSTD4QC8DNlBDUU/exec";
+
+    // Initialize Map
+    map = L.map('map').setView([4.21, 101.97], 6);
+    L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}').addTo(map);
+    mapLayer = L.featureGroup().addTo(map);
+
+    // Initial Database Fetch
+    fetch(SHEET_API_URL).then(res => res.json()).then(data => {
+        Object.values(data).forEach(entry => {
+            database[entry.properties.identifier.toUpperCase()] = entry;
+        });
+        log("Database Connected: " + Object.keys(database).length + " rules cached.");
+    }).catch(err => log("Database Error: " + err.message));
+
+    // UI Trigger Logic
+    function updateButtonStates() {
+        const processBtn = document.getElementById('processBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        
+        // Process button: Enabled if there's at least 1 file
+        processBtn.disabled = queue.length === 0;
+
+        // Download button: Enabled only if there are items AND all processable items are done
+        const hasItems = queue.length > 0;
+        const allProcessed = queue.every(item => item.status === 'PROCESSED' || item.status === 'UNMATCHED');
+        const atLeastOneSuccess = queue.some(item => item.status === 'PROCESSED');
+        
+        downloadBtn.disabled = !(hasItems && allProcessed && atLeastOneSuccess);
+    }
+
+    // Drag & Drop
+    const dropZone = document.getElementById('dropZone');
+    dropZone.onclick = () => document.getElementById('fileIn').click();
+    document.getElementById('fileIn').onchange = (e) => handleFiles(e.target.files);
+    dropZone.ondragover = (e) => { e.preventDefault(); dropZone.classList.add('hover'); };
+    dropZone.ondragleave = () => dropZone.classList.remove('hover');
+    dropZone.ondrop = (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('hover');
+        handleFiles(e.dataTransfer.files);
+    };
+
+    async function handleFiles(files) {
+        log(`Loading ${files.length} file(s)...`);
+        for (let file of files) {
+            try {
+                let geojson = null;
+                if (file.name.endsWith('.kml') || file.name.endsWith('.kmz')) {
+                    let kmlText = "";
+                    if(file.name.endsWith('.kmz')) {
+                        const zip = await JSZip.loadAsync(file);
+                        kmlText = await zip.file(/\.kml$/i)[0].async("string");
+                    } else {
+                        kmlText = await file.text();
+                    }
+                    geojson = toGeoJSON.kml(new DOMParser().parseFromString(kmlText, "text/xml"));
+                } else {
+                    geojson = JSON.parse(await file.text());
+                }
+
+                const matchedId = Object.keys(database).find(id => file.name.toUpperCase().includes(id));
+                
+                queue.push({
+                    name: file.name,
+                    data: geojson,
+                    matchedId: matchedId || null,
+                    status: matchedId ? 'READY' : 'UNMATCHED',
+                    processedData: null
+                });
+            } catch (err) {
+                log(`Error reading ${file.name}: ${err.message}`);
+            }
+        }
+        renderQueue();
+        updateButtonStates();
+    }
+
+    function renderQueue() {
+        const tbody = document.getElementById('queueBody');
+        tbody.innerHTML = "";
+        queue.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.name}</td>
+                <td><small>${item.matchedId || 'No Match'}</small></td>
+                <td><span class="status-pill status-${item.status.toLowerCase()}">${item.status}</span></td>
+            `;
+            tbody.appendChild(tr);
+        });
+        document.getElementById('count').innerText = `${queue.length} Files`;
+    }
+
+    function processAll() {
+        mapLayer.clearLayers();
+        log("Processing batch...");
+        
+        queue.forEach(item => {
+            if (item.matchedId && database[item.matchedId]) {
+                const dbEntry = database[item.matchedId];
+                const now = new Date().toISOString().split('.')[0] + "Z";
+                
+                item.processedData = {
+                    "type": "FeatureCollection",
+                    "title": dbEntry.item,
+                    "metadata": { "validFrom": now, "issued": now },
+                    "features": item.data.features.map(f => ({
+                        "type": "Feature",
+                        "geometry": {
+                            ...f.geometry,
+                            "layer": dbEntry.layer 
+                        },
+                        "properties": dbEntry.properties
+                    }))
+                };
+                
+                item.status = "PROCESSED";
+                L.geoJSON(item.processedData, {style: {color: '#22c55e'}}).addTo(mapLayer);
+            }
+        });
+
+        if (mapLayer.getLayers().length > 0) {
+            map.fitBounds(mapLayer.getBounds());
+        }
+        
+        renderQueue();
+        updateButtonStates();
+        log("Batch complete. Check queue status.");
+    }
+
+    async function downloadZip() {
+        const zip = new JSZip();
+        let count = 0;
+        
+        queue.forEach(item => {
+            if (item.processedData) {
+                zip.file(`${item.matchedId}_ED318.geojson`, JSON.stringify(item.processedData, null, 2));
+                count++;
+            }
+        });
+
+        const content = await zip.generateAsync({type:"blob"});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(content);
+        a.download = `ED318_Export_${new Date().getTime()}.zip`;
+        a.click();
+        log(`Downloaded ZIP containing ${count} files.`);
+    }
+
+    function resetQueue() {
+        queue = [];
+        mapLayer.clearLayers();
+        renderQueue();
+        updateButtonStates();
+        log("Queue cleared.");
+    }
+
+    function log(msg) {
+        const container = document.getElementById('log');
+        container.innerHTML += `<div>[${new Date().toLocaleTimeString()}] ${msg}</div>`;
+        container.scrollTop = container.scrollHeight;
+    }
+</script>
+</body>
+</html>
