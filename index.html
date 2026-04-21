@@ -12,6 +12,50 @@
             --warning: #f59e0b; --danger: #ef4444;
         }
 
+        .help-container { display: flex; align-items: center; gap: 6px; position: relative; }
+        
+        .help-icon {
+            cursor: help;
+            color: #94a3b8;
+            font-size: 12px;
+            background: rgba(255,255,255,0.05);
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .help-icon:hover { color: var(--accent); border-color: var(--accent); background: rgba(56, 189, 248, 0.1); }
+
+        .tooltip {
+            visibility: hidden;
+            width: 240px;
+            background-color: #000;
+            color: #cbd5e1;
+            text-align: left;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1001;
+            top: 25px;
+            left: 0;
+            font-size: 11px;
+            line-height: 1.4;
+            font-weight: normal;
+            text-transform: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            white-space: normal;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .help-icon:hover + .tooltip { visibility: visible; opacity: 1; }
+
         #loadingOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(15, 23, 42, 0.9); display: flex; flex-direction: column; 
@@ -41,7 +85,20 @@
             background: rgba(0,0,0,0.2); padding: 10px 15px; font-size: 11px; font-weight: 700;
             text-transform: uppercase; border-bottom: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center; color: var(--accent);
+            min-height: 40px; box-sizing: border-box;
         }
+
+        .header-title { display: flex; align-items: center; gap: 8px; flex: 1; overflow: visible; white-space: nowrap; }
+
+        .panel-header small {
+            font-size: 9px; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+            font-weight: 800; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.4); white-space: nowrap; flex-shrink: 0;
+        }
+
+        #statusLine { color: var(--accent); border-color: var(--accent); }
+        #matchStatus { color: var(--warning); border-color: var(--warning); }
+        .editor-badge { color: #10b981; border-color: #10b981; }
 
         .content { flex: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
 
@@ -50,6 +107,8 @@
             border-radius: 4px; font-family: monospace; font-size: 11px; padding: 6px; box-sizing: border-box;
         }
         
+        textarea:disabled, select:disabled { opacity: 0.5; cursor: not-allowed; color: #64748b; }
+
         label { font-size: 9px; font-weight: bold; color: #94a3b8; display: block; margin-top: 2px; text-transform: uppercase; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         
@@ -89,7 +148,14 @@
     
     <div class="panel" style="grid-column: 1; grid-row: 1;">
         <div class="panel-header">
-            <div>Step 1: Database <small id="statusLine">Connecting...</small></div>
+            <div class="header-title">
+                <div class="help-container">
+                    Step 1: Database
+                    <span class="help-icon">?</span>
+                    <div class="tooltip">Choose the database entry that matches your geometry. Note: If you upload a file in Step 2 first, the system may auto-select this for you. If it doesn't, select the correct record manually before processing.</div>
+                </div>
+            </div>
+            <small id="statusLine">Connecting...</small>
         </div>
         <div class="content" id="zoneListContent">
             <input type="text" id="search" class="edit-input" placeholder="Search ID or Name...">
@@ -99,13 +165,20 @@
 
     <div class="panel" style="grid-column: 1; grid-row: 2;">
         <div class="panel-header">
-            <div>Step 2: Geometry <small id="matchStatus">Awaiting source...</small></div>
-            <div style="display: flex; gap: 4px;">
-                <button class="btn btn-ghost" onclick="document.getElementById('geoIn').click()">GEOJSON</button>
-                <button class="btn btn-ghost" onclick="document.getElementById('kmlIn').click()">KML</button>
+            <div class="header-title">
+                <div class="help-container">
+                    Step 2: Geometry
+                    <span class="help-icon">?</span>
+                    <div class="tooltip">Upload your spatial file (.kmz, .kml, or .geojson) using the corresponding button. Once uploaded, click Process Geometry (Tip: This action triggers the system to link your file with the database and prepares the metadata for Step 4).</div>
+                </div>
             </div>
+            <small id="matchStatus">Awaiting source...</small>
         </div>
         <div class="content">
+            <div style="display: flex; gap: 4px; margin-bottom: 6px;">
+                <button class="btn btn-ghost" style="flex:1" onclick="document.getElementById('geoIn').click()">.geojson</button>
+                <button class="btn btn-ghost" style="flex:1" onclick="document.getElementById('kmlIn').click()">.kml / .kmz</button>
+            </div>
             <input type="file" id="geoIn" hidden accept=".geojson,.json">
             <input type="file" id="kmlIn" hidden accept=".kml,.kmz">
             <textarea id="inputGeo" placeholder="Paste GeoJSON here..." style="flex: 1;"></textarea>
@@ -124,7 +197,14 @@
 
     <div class="panel" style="grid-column: 3; grid-row: 1;">
         <div class="panel-header">
-            <div>Step 4: Attribute Editor <small>Sync with eAIP</small></div>
+            <div class="header-title">
+                <div class="help-container">
+                    Step 4: Editor
+                    <span class="help-icon">?</span>
+                    <div class="tooltip">If you need to modify any information displayed in Step 1 for your final output, make your changes in the Step 4 fields then click Update Metadata (this button only works after you have processed geometry in Step 2). Note: Changes made here only affect your current Step 3 export; they will not overwrite the permanent database.</div>
+                </div>
+            </div>
+            <small class="editor-badge">Sync Active</small>
         </div>
         <div class="content">
             <div class="grid-2">
@@ -152,7 +232,7 @@
                 <div><label>Country</label><input type="text" id="editCountry" class="edit-input"></div>
             </div>
             <div class="grid-2">
-                <div><label>Type</label><select id="editType"><option>USPACE</option><option>PROHIBITED</option><option>REQ_AUTHORIZATION</option><option>CONDITIONAL</option><option>NO_RESTRICTION</option></select></div>
+                <div><label>Type</label><select id="editType" onchange="handleTypeChange()"><option>USPACE</option><option>PROHIBITED</option><option>REQ_AUTHORIZATION</option><option>CONDITIONAL</option><option>NO_RESTRICTION</option></select></div>
                 <div><label>Purpose</label><select id="editPurpose"><option>AUTHORIZATION</option><option>INFORMATION</option></select></div>
             </div>
             <div class="grid-2">
@@ -180,7 +260,15 @@
     </div>
 
     <div class="panel" style="grid-column: 3; grid-row: 2;">
-        <div class="panel-header">Step 3: Export</div>
+        <div class="panel-header">
+            <div class="header-title">
+                <div class="help-container">
+                    Step 3: Export
+                    <span class="help-icon">?</span>
+                    <div class="tooltip">The system merges your database selection with your uploaded geometry to create an ED-318 formatted .geojson. Click Download ED-318 File to save your result. If you need to adjust specific details before downloading, proceed to Step 4.</div>
+                </div>
+            </div>
+        </div>
         <div class="content">
             <textarea id="outputGeo" readonly style="flex: 1; color: #fbbf24;" placeholder="Output JSON..."></textarea>
             <button class="btn btn-success" onclick="download()">Download ED-318 File</button>
@@ -196,9 +284,7 @@
 <script>
     let map, rawLayer, finalLayer, eAIPData = {};
     let selectedId = null;
-
     const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzRIq_ry9RBWvhRIkT4JUa1n8PmFWeZvBogbePE1UFnVubTEu3mdSTD4QC8DNlBDUU/exec"; 
-
     const baseLayers = {
         "Street": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OSM' }),
         "Satellite": L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { attribution: 'Google' })
@@ -222,12 +308,20 @@
                 const id = entry.properties.identifier;
                 eAIPData[id] = entry;
             });
-            document.getElementById('statusLine').innerText = "Connected";
+            const status = document.getElementById('statusLine');
+            status.innerText = "CONNECTED";
+            status.style.borderColor = "var(--success)";
+            status.style.color = "var(--success)";
             renderList("");
             overlay.style.opacity = '0';
             setTimeout(() => overlay.style.display = 'none', 500);
         } catch (e) {
-            document.getElementById('statusLine').innerText = "Offline";
+            const status = document.getElementById('statusLine');
+            if(status) {
+                status.innerText = "OFFLINE";
+                status.style.borderColor = "var(--danger)";
+                status.style.color = "var(--danger)";
+            }
         }
     }
 
@@ -248,6 +342,24 @@
         });
     }
 
+    function handleTypeChange() {
+        const typeEl = document.getElementById('editType');
+        const purposeEl = document.getElementById('editPurpose');
+        const restrictionEl = document.getElementById('editRestriction');
+        if (typeEl.value === 'REQ_AUTHORIZATION') {
+            purposeEl.value = 'AUTHORIZATION';
+            purposeEl.disabled = true;
+        } else {
+            purposeEl.disabled = false;
+        }
+        if (typeEl.value !== 'CONDITIONAL') {
+            restrictionEl.value = "";
+            restrictionEl.disabled = true;
+        } else {
+            restrictionEl.disabled = false;
+        }
+    }
+
     function selectZone(id, autoScroll = false) {
         selectedId = id;
         const entry = eAIPData[id];
@@ -263,14 +375,12 @@
         document.getElementById('editType').value = entry.properties.type ?? "";
         document.getElementById('editPurpose').value = entry.properties.zoneAuthority?.[0]?.purpose ?? "AUTHORIZATION";
         document.getElementById('editRestriction').value = entry.properties.restrictionConditions ?? "";
-
+        handleTypeChange();
         const checkboxes = document.querySelectorAll('#reasonGroup input');
         checkboxes.forEach(cb => cb.checked = false);
         let reasons = Array.isArray(entry.properties.reason) ? entry.properties.reason : (entry.properties.reason || "").split(',').map(s => s.trim());
         checkboxes.forEach(cb => { if (reasons.includes(cb.value)) cb.checked = true; });
-
         renderList(document.getElementById('search').value);
-
         if(autoScroll) {
             const el = document.getElementById(`item-${id}`);
             if(el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -302,14 +412,17 @@
         rawLayer.clearLayers();
         const l = L.geoJSON(data, { style: { color: '#38bdf8', weight: 2, dashArray: '4' } }).addTo(rawLayer);
         map.fitBounds(l.getBounds());
-        
         let detected = data.features?.[0]?.properties?.name || data.features?.[0]?.properties?.identifier || "";
         if(detected) {
             const match = Object.keys(eAIPData).find(id => detected.toUpperCase().includes(id) || id.includes(detected.toUpperCase()));
             if(match) { 
                 selectZone(match, true); 
-                document.getElementById('matchStatus').innerText = "Matched: " + match; 
-                document.getElementById('matchStatus').style.color = "var(--success)";
+                const matchStatus = document.getElementById('matchStatus');
+                if(matchStatus) {
+                    matchStatus.innerText = "MATCH: " + match; 
+                    matchStatus.style.color = "var(--success)";
+                    matchStatus.style.borderColor = "var(--success)";
+                }
             }
         }
     }
@@ -325,38 +438,36 @@
         const source = JSON.parse(inputVal);
         const reasons = Array.from(document.querySelectorAll('#reasonGroup input:checked')).map(cb => cb.value);
         const now = new Date().toISOString().split('.')[0] + "Z";
-
+        const selectedType = document.getElementById('editType').value;
         const result = {
             "type": "FeatureCollection",
             "title": document.getElementById('editItem').value,
-            "metadata": {
-                "validFrom": now,
-                "issued": now
-            },
-            "features": source.features.map(f => ({
-                "type": "Feature",
-                "geometry": {
-                    ...f.geometry,
-                    "layer": { 
-                        "upper": parseInt(document.getElementById('editUpper').value) || 0,
-                        "upperReference": document.getElementById('editUpperRef').value,
-                        "lower": parseInt(document.getElementById('editLower').value) || 0,
-                        "lowerReference": document.getElementById('editLowerRef').value,
-                        "uom": document.getElementById('editUom').value
-                    } 
-                },
-                "properties": { 
+            "metadata": { "validFrom": now, "issued": now },
+            "features": source.features.map(f => {
+                const props = { 
                     "identifier": document.getElementById('editId').value, 
                     "country": document.getElementById('editCountry').value, 
                     "variant": document.getElementById('editVariant').value,
-                    "type": document.getElementById('editType').value,
+                    "type": selectedType,
                     "reason": reasons,
-                    "zoneAuthority": [
-                        { "purpose": document.getElementById('editPurpose').value }
-                    ],
-                    "restrictionConditions": document.getElementById('editRestriction').value
-                }
-            }))
+                    "zoneAuthority": [{ "purpose": document.getElementById('editPurpose').value }]
+                };
+                if (selectedType === 'CONDITIONAL') { props.restrictionConditions = document.getElementById('editRestriction').value; }
+                return {
+                    "type": "Feature",
+                    "geometry": {
+                        ...f.geometry,
+                        "layer": { 
+                            "upper": parseInt(document.getElementById('editUpper').value) || 0,
+                            "upperReference": document.getElementById('editUpperRef').value,
+                            "lower": parseInt(document.getElementById('editLower').value) || 0,
+                            "lowerReference": document.getElementById('editLowerRef').value,
+                            "uom": document.getElementById('editUom').value
+                        } 
+                    },
+                    "properties": props
+                };
+            })
         };
         updateOutput(result);
     }
