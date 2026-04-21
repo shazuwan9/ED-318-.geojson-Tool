@@ -220,22 +220,42 @@
                 const dbEntry = database[item.matchedId];
                 const now = new Date().toISOString().split('.')[0] + "Z";
                 const baseProps = { ...dbEntry.properties };
+                
                 if (baseProps.type !== 'CONDITIONAL') {
                     delete baseProps.restrictionConditions;
                 }
+
+                // Recursive function to strip Z-values regardless of nesting level
+                const stripZ = (coords) => {
+                    if (!Array.isArray(coords)) return coords;
+                    // If we've reached the actual coordinate pair/triplet [x, y, z]
+                    if (typeof coords[0] === 'number') {
+                        return coords.slice(0, 2);
+                    }
+                    // Otherwise, keep digging into nested arrays (rings, polygons, etc.)
+                    return coords.map(stripZ);
+                };
 
                 item.processedData = {
                     "type": "FeatureCollection",
                     "title": dbEntry.item,
                     "metadata": { "validFrom": now, "issued": now },
-                    "features": item.data.features.map(f => ({
-                        "type": "Feature",
-                        "geometry": {
-                            ...f.geometry,
-                            "layer": dbEntry.layer 
-                        },
-                        "properties": baseProps
-                    }))
+                    "features": item.data.features.map(f => {
+                        // Deep clone the geometry to avoid mutating the original queue data
+                        let cleanGeometry = JSON.parse(JSON.stringify(f.geometry));
+                        
+                        // Apply the recursive strip
+                        cleanGeometry.coordinates = stripZ(cleanGeometry.coordinates);
+
+                        return {
+                            "type": "Feature",
+                            "geometry": {
+                                ...cleanGeometry,
+                                "layer": dbEntry.layer 
+                            },
+                            "properties": baseProps
+                        };
+                    })
                 };
                 
                 item.status = "PROCESSED";

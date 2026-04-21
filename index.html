@@ -439,11 +439,28 @@
         const reasons = Array.from(document.querySelectorAll('#reasonGroup input:checked')).map(cb => cb.value);
         const now = new Date().toISOString().split('.')[0] + "Z";
         const selectedType = document.getElementById('editType').value;
+
         const result = {
             "type": "FeatureCollection",
             "title": document.getElementById('editItem').value,
             "metadata": { "validFrom": now, "issued": now },
             "features": source.features.map(f => {
+                let cleanGeometry = JSON.parse(JSON.stringify(f.geometry));
+                
+                if (cleanGeometry.type === "Polygon") {
+                    cleanGeometry.coordinates = cleanGeometry.coordinates.map(ring => 
+                        ring.map(coord => coord.slice(0, 2))
+                    );
+                } else if (cleanGeometry.type === "LineString" || cleanGeometry.type === "MultiPoint") {
+                    cleanGeometry.coordinates = cleanGeometry.coordinates.map(coord => coord.slice(0, 2));
+                } else if (cleanGeometry.type === "Point") {
+                    cleanGeometry.coordinates = cleanGeometry.coordinates.slice(0, 2);
+                } else if (cleanGeometry.type === "MultiPolygon") {
+                    cleanGeometry.coordinates = cleanGeometry.coordinates.map(polygon => 
+                        polygon.map(ring => ring.map(coord => coord.slice(0, 2)))
+                    );
+                }
+
                 const props = { 
                     "identifier": document.getElementById('editId').value, 
                     "country": document.getElementById('editCountry').value, 
@@ -452,11 +469,15 @@
                     "reason": reasons,
                     "zoneAuthority": [{ "purpose": document.getElementById('editPurpose').value }]
                 };
-                if (selectedType === 'CONDITIONAL') { props.restrictionConditions = document.getElementById('editRestriction').value; }
+                
+                if (selectedType === 'CONDITIONAL') { 
+                    props.restrictionConditions = document.getElementById('editRestriction').value; 
+                }
+
                 return {
                     "type": "Feature",
                     "geometry": {
-                        ...f.geometry,
+                        ...cleanGeometry,
                         "layer": { 
                             "upper": parseInt(document.getElementById('editUpper').value) || 0,
                             "upperReference": document.getElementById('editUpperRef').value,
