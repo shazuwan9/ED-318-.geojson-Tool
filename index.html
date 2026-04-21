@@ -7,278 +7,186 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
-            --bg: #0f172a;
-            --panel: #1e293b;
-            --border: #334155;
-            --text: #f8fafc;
-            --accent: #38bdf8;
-            --success: #22c55e;
-            --warning: #f59e0b;
+            --bg: #0f172a; --panel: #1e293b; --border: #334155;
+            --text: #f8fafc; --accent: #38bdf8; --success: #22c55e;
+            --warning: #f59e0b; --danger: #ef4444;
         }
 
         #loadingOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            backdrop-filter: blur(4px);
-            transition: opacity 0.5s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.9); display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(4px);
         }
 
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(56, 189, 248, 0.1);
-            border-left-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 15px;
+            width: 40px; height: 40px; border: 4px solid rgba(56, 189, 248, 0.1);
+            border-left-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            color: var(--accent);
-            font-family: monospace;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        /* ------------------------------ */
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow: hidden;
-        }
+        body, html { margin: 0; padding: 0; height: 100vh; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
 
         .app-container {
             display: grid;
-            grid-template-columns: 400px 1fr 400px;
-            grid-template-rows: 1fr 1fr;
-            height: 100vh;
-            gap: 10px;
-            padding: 10px;
-            box-sizing: border-box;
+            grid-template-columns: 350px 1fr 400px;
+            grid-template-rows: 60fr 40fr; 
+            height: 100vh; gap: 12px; padding: 12px; box-sizing: border-box;
         }
 
-        .panel {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .map-container {
-            grid-row: span 2;
-            position: relative;
-        }
-
-        #map {
-            width: 100%;
-            height: 100%;
-            border-radius: 4px;
-        }
+        .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; display: flex; flex-direction: column; overflow: hidden; }
+        .map-container { grid-column: 2; grid-row: 1 / span 2; position: relative; }
+        #map { width: 100%; height: 100%; border-radius: 4px; }
 
         .panel-header {
-            background: rgba(0,0,0,0.2);
-            padding: 10px 15px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: rgba(0,0,0,0.2); padding: 10px 15px; font-size: 11px; font-weight: 700;
+            text-transform: uppercase; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; color: var(--accent);
         }
 
-        .header-text-stack {
-            display: flex;
-            flex-direction: column;
+        .content { flex: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+
+        textarea, .edit-input, select {
+            width: 100%; background: #000; color: #10b981; border: 1px solid var(--border);
+            border-radius: 4px; font-family: monospace; font-size: 11px; padding: 6px; box-sizing: border-box;
         }
-
-        .panel-header small {
-            display: block;
-            font-weight: 400;
-            text-transform: none;
-            color: #94a3b8;
-            letter-spacing: 0;
-            margin-top: 2px;
-        }
-
-        .content {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        textarea {
-            flex: 1;
-            background: #000;
-            color: #10b981;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 11px;
-            padding: 10px;
-            resize: none;
-        }
-
-        .search-box, .edit-input {
-            width: 100%;
-            padding: 8px;
-            background: #0f172a;
-            border: 1px solid var(--border);
-            color: white;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .zone-item {
-            padding: 8px;
-            border-bottom: 1px solid var(--border);
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .zone-item:hover { background: #334155; }
-        .zone-item.selected { background: var(--accent); color: #000; font-weight: bold; }
-
-        .btn-group { display: flex; gap: 5px; }
         
-        .btn {
-            padding: 6px 12px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 11px;
-            transition: 0.2s;
+        label { font-size: 9px; font-weight: bold; color: #94a3b8; display: block; margin-top: 2px; text-transform: uppercase; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        
+        .checkbox-group-full { 
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; background: #000; 
+            padding: 10px; border: 1px solid var(--border); border-radius: 4px; 
+            margin-top: 4px;
         }
+        .checkbox-item { display: flex; align-items: center; gap: 5px; font-size: 9px; color: #cbd5e1; }
 
+        .zone-item { padding: 8px; border-bottom: 1px solid var(--border); cursor: pointer; font-size: 11px; scroll-margin: 10px; }
+        .zone-item.selected { border-left: 4px solid var(--accent); background: rgba(56, 189, 248, 0.1); }
+
+        .btn { padding: 8px 12px; border-radius: 4px; border: none; cursor: pointer; font-weight: 600; font-size: 10px; text-transform: uppercase; }
         .btn-primary { background: var(--accent); color: #000; }
-        .btn-success { background: var(--success); color: #000; }
-        .btn-action { background: var(--warning); color: #000; }
-        .btn-ghost { background: transparent; border: 1px solid var(--border); color: white; }
-        .btn-ghost.active { background: white; color: black; }
+        .btn-success { background: var(--success); color: #000; width: 100%; }
+        .btn-action { background: var(--warning); color: #000; width: 100%; margin-top: 5px; }
+        .btn-ghost { background: transparent; border: 1px solid var(--border); color: white; padding: 4px 8px; }
+        .btn-ghost.active { background: var(--accent); color: black; }
 
         .layer-controls {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1000;
-            background: var(--panel);
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            position: absolute; bottom: 25px; right: 15px; z-index: 1000;
+            background: var(--panel); padding: 10px; border-radius: 8px; border: 1px solid var(--border);
+            display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
-
-        .tag {
-            font-size: 10px;
-            padding: 2px 6px;
-            background: #334155;
-            border-radius: 4px;
-            margin-right: 5px;
-        }
+        .tag { font-size: 9px; padding: 2px 5px; background: #334155; border-radius: 3px; color: var(--accent); border: 1px solid var(--accent); margin-right: 5px;}
     </style>
 </head>
 <body>
 
 <div id="loadingOverlay">
     <div class="spinner"></div>
-    <div class="loading-text">Syncing Database...</div>
+    <div class="loading-text" style="margin-top:15px; letter-spacing:2px; font-size:12px;">Syncing Database...</div>
 </div>
 
 <div class="app-container">
-    <div class="panel">
+    
+    <div class="panel" style="grid-column: 1; grid-row: 1;">
         <div class="panel-header">
-            <div class="header-text-stack">
-                Step 1: Google Sheet Reference
-                <small id="statusLine">Initializing...</small>
-                <small id="matchStatus" style="color: var(--success);"></small>
+            <div>Step 1: Database <small id="statusLine">Connecting...</small></div>
+        </div>
+        <div class="content" id="zoneListContent">
+            <input type="text" id="search" class="edit-input" placeholder="Search ID or Name...">
+            <div id="zoneList" style="flex: 1; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <div class="panel" style="grid-column: 1; grid-row: 2;">
+        <div class="panel-header">
+            <div>Step 2: Geometry <small id="matchStatus">Awaiting source...</small></div>
+            <div style="display: flex; gap: 4px;">
+                <button class="btn btn-ghost" onclick="document.getElementById('geoIn').click()">GEOJSON</button>
+                <button class="btn btn-ghost" onclick="document.getElementById('kmlIn').click()">KML</button>
             </div>
         </div>
         <div class="content">
-            <input type="text" id="search" class="search-box" placeholder="Search Database (e.g. WMP220)...">
-            <div id="zoneList" style="flex: 1; overflow-y: auto;"></div>
+            <input type="file" id="geoIn" hidden accept=".geojson,.json">
+            <input type="file" id="kmlIn" hidden accept=".kml,.kmz">
+            <textarea id="inputGeo" placeholder="Paste GeoJSON here..." style="flex: 1;"></textarea>
+            <button class="btn btn-primary" onclick="process()">Process Geometry</button>
         </div>
     </div>
 
     <div class="panel map-container">
         <div id="map"></div>
         <div class="layer-controls">
-            <div style="font-size: 10px; font-weight: 800; margin-bottom: 5px;">POLYGON VISIBILITY</div>
-            <button id="toggleRaw" class="btn btn-ghost active" onclick="toggleLayer('raw')">Step 2 (Input Data)</button>
-            <button id="toggleFinal" class="btn btn-ghost active" onclick="toggleLayer('final')">Step 3 (Processed)</button>
+            <div style="font-size: 9px; font-weight: 800; color: #94a3b8;">OVERLAYS</div>
+            <button id="toggleRaw" class="btn btn-ghost active" onclick="toggleLayer('raw')">Input Layer</button>
+            <button id="toggleFinal" class="btn btn-ghost active" onclick="toggleLayer('final')">Output Layer</button>
         </div>
     </div>
 
-    <div class="panel">
+    <div class="panel" style="grid-column: 3; grid-row: 1;">
         <div class="panel-header">
-            <div class="header-text-stack">
-                Step 4: Attribute Editor
-                <small>Manual Adjustments</small>
-            </div>
+            <div>Step 4: Attribute Editor <small>Sync with eAIP</small></div>
         </div>
         <div class="content">
-            <label style="font-size: 10px;">TITLE</label>
-            <input type="text" id="editTitle" class="edit-input">
-            <label style="font-size: 10px;">IDENTIFIER</label>
-            <input type="text" id="editId" class="edit-input" maxlength="10">
-            <div style="margin-top: auto; display: grid; gap: 10px;">
-                <button class="btn btn-action" onclick="applyEdits()">Apply Changes to Step 3</button>
-                <button class="btn btn-success" onclick="download()">Download Result</button>
+            <div class="grid-2">
+                <div><label>Item Name</label><input type="text" id="editItem" class="edit-input"></div>
+                <div><label>Identifier</label><input type="text" id="editId" class="edit-input"></div>
             </div>
+            <div class="grid-2">
+                <div>
+                    <label>Upper | Ref</label>
+                    <div style="display: flex; gap: 2px;">
+                        <input type="number" id="editUpper" class="edit-input">
+                        <select id="editUpperRef" style="width: 75px;"><option>AMSL</option><option>AGL</option></select>
+                    </div>
+                </div>
+                <div>
+                    <label>Lower | Ref</label>
+                    <div style="display: flex; gap: 2px;">
+                        <input type="number" id="editLower" class="edit-input">
+                        <select id="editLowerRef" style="width: 75px;"><option>AGL</option><option>AMSL</option></select>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div><label>UOM</label><select id="editUom"><option>ft</option><option>m</option></select></div>
+                <div><label>Country</label><input type="text" id="editCountry" class="edit-input"></div>
+            </div>
+            <div class="grid-2">
+                <div><label>Type</label><select id="editType"><option>USPACE</option><option>PROHIBITED</option><option>REQ_AUTHORIZATION</option><option>CONDITIONAL</option><option>NO_RESTRICTION</option></select></div>
+                <div><label>Purpose</label><select id="editPurpose"><option>AUTHORIZATION</option><option>INFORMATION</option></select></div>
+            </div>
+            <div class="grid-2">
+                <div><label>Variant</label><select id="editVariant"><option>COMMON</option><option>CUSTOMIZED</option></select></div>
+            </div>
+            
+            <label>Reasons (eAIP Categories)</label>
+            <div class="checkbox-group-full" id="reasonGroup">
+                <div class="checkbox-item"><input type="checkbox" value="AIR_TRAFFIC"> AIR_TRAFFIC</div>
+                <div class="checkbox-item"><input type="checkbox" value="SENSITIVE"> SENSITIVE</div>
+                <div class="checkbox-item"><input type="checkbox" value="PRIVACY"> PRIVACY</div>
+                <div class="checkbox-item"><input type="checkbox" value="POPULATION"> POPULATION</div>
+                <div class="checkbox-item"><input type="checkbox" value="NATURE"> NATURE</div>
+                <div class="checkbox-item"><input type="checkbox" value="NOISE"> NOISE</div>
+                <div class="checkbox-item"><input type="checkbox" value="EMERGENCY"> EMERGENCY</div>
+                <div class="checkbox-item"><input type="checkbox" value="DAR"> DAR</div>
+                <div class="checkbox-item"><input type="checkbox" value="OTHER"> OTHER</div>
+            </div>
+            
+            <label>Restriction Conditions</label>
+            <textarea id="editRestriction" rows="2" style="height: 40px;"></textarea>
+            
+            <button class="btn btn-action" onclick="applyEdits()">Update Metadata</button>
         </div>
     </div>
 
-    <div class="panel">
-        <div class="panel-header">
-            <div class="header-text-stack">
-                Step 2: Geometry Input
-                <small>Upload your file &rarr;</small>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-ghost" onclick="document.getElementById('geoIn').click()">.geojson</button>
-                <button class="btn btn-ghost" onclick="document.getElementById('kmlIn').click()">.kml/.kmz</button>
-            </div>
-        </div>
+    <div class="panel" style="grid-column: 3; grid-row: 2;">
+        <div class="panel-header">Step 3: Export</div>
         <div class="content">
-            <input type="file" id="geoIn" hidden accept=".geojson,.json">
-            <input type="file" id="kmlIn" hidden accept=".kml,.kmz">
-            <textarea id="inputGeo" placeholder="Paste or upload GeoJSON/KML..."></textarea>
-            <button class="btn btn-primary" onclick="process()">Process Geometry &rarr;</button>
+            <textarea id="outputGeo" readonly style="flex: 1; color: #fbbf24;" placeholder="Output JSON..."></textarea>
+            <button class="btn btn-success" onclick="download()">Download ED-318 File</button>
         </div>
     </div>
 
-    <div class="panel">
-        <div class="panel-header">Step 3: ED-318 Output</div>
-        <div class="content">
-            <textarea id="outputGeo" readonly></textarea>
-        </div>
-    </div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -289,23 +197,18 @@
     let map, rawLayer, finalLayer, eAIPData = {};
     let selectedId = null;
 
-    // --- CONFIGURATION ---
     const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzRIq_ry9RBWvhRIkT4JUa1n8PmFWeZvBogbePE1UFnVubTEu3mdSTD4QC8DNlBDUU/exec"; 
-    // ---------------------
 
     const baseLayers = {
         "Street": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OSM' }),
-        "Satellite": L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { attribution: 'Google' }),
-        "Terrain": L.tileLayer('https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', { attribution: 'Google' })
+        "Satellite": L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { attribution: 'Google' })
     };
 
     function init() {
         map = L.map('map', { center: [4.21, 101.97], zoom: 6, layers: [baseLayers.Street] });
         L.control.layers(baseLayers).addTo(map);
-        
         rawLayer = L.layerGroup().addTo(map);
         finalLayer = L.layerGroup().addTo(map);
-
         fetchData();
     }
 
@@ -314,30 +217,17 @@
         try {
             const response = await fetch(SHEET_API_URL);
             const rawData = await response.json();
-            
             eAIPData = {};
             Object.values(rawData).forEach(entry => {
                 const id = entry.properties.identifier;
                 eAIPData[id] = entry;
             });
-
-            document.getElementById('statusLine').innerText = "Database Connected";
+            document.getElementById('statusLine').innerText = "Connected";
             renderList("");
-
-            // Fade out and remove the overlay
             overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 500);
-
+            setTimeout(() => overlay.style.display = 'none', 500);
         } catch (e) {
-            console.error("Error loading sheet data:", e);
-            document.getElementById('statusLine').innerText = "Error: Database Offline";
-            document.getElementById('statusLine').style.color = "#ef4444";
-            
-            // On error, let the user know but maybe keep overlay or show button
-            document.querySelector('.loading-text').innerText = "FAILED TO LOAD DATABASE";
-            document.querySelector('.spinner').style.borderLeftColor = "#ef4444";
+            document.getElementById('statusLine').innerText = "Offline";
         }
     }
 
@@ -345,35 +235,53 @@
         const list = document.getElementById('zoneList');
         list.innerHTML = "";
         const filter = q.toUpperCase();
-        
         Object.keys(eAIPData).forEach(id => {
-            const entryName = eAIPData[id].item; 
-            if(id.includes(filter) || entryName.toUpperCase().includes(filter)) {
+            const entry = eAIPData[id];
+            if(id.includes(filter) || entry.item.toUpperCase().includes(filter)) {
                 const div = document.createElement('div');
+                div.id = `item-${id}`;
                 div.className = `zone-item ${selectedId === id ? 'selected' : ''}`;
-                div.innerHTML = `<div><span class="tag">${id}</span>${entryName}</div>`;
+                div.innerHTML = `<div><span class="tag">${id}</span>${entry.item}</div>`;
                 div.onclick = () => selectZone(id);
                 list.appendChild(div);
             }
         });
     }
 
-    function selectZone(id) {
+    function selectZone(id, autoScroll = false) {
         selectedId = id;
         const entry = eAIPData[id];
-        document.getElementById('editTitle').value = entry.item;
-        document.getElementById('editId').value = id;
+        document.getElementById('editItem').value = entry.item || "";
+        document.getElementById('editId').value = id || "";
+        document.getElementById('editUpper').value = entry.layer.upper ?? "";
+        document.getElementById('editUpperRef').value = entry.layer.upperRef ?? "AMSL";
+        document.getElementById('editLower').value = entry.layer.lower ?? "";
+        document.getElementById('editLowerRef').value = entry.layer.lowerRef ?? "AGL";
+        document.getElementById('editUom').value = entry.layer.uom ?? "ft";
+        document.getElementById('editCountry').value = entry.properties.country ?? "";
+        document.getElementById('editVariant').value = entry.properties.variant ?? "COMMON";
+        document.getElementById('editType').value = entry.properties.type ?? "";
+        document.getElementById('editPurpose').value = entry.properties.zoneAuthority?.[0]?.purpose ?? "AUTHORIZATION";
+        document.getElementById('editRestriction').value = entry.properties.restrictionConditions ?? "";
+
+        const checkboxes = document.querySelectorAll('#reasonGroup input');
+        checkboxes.forEach(cb => cb.checked = false);
+        let reasons = Array.isArray(entry.properties.reason) ? entry.properties.reason : (entry.properties.reason || "").split(',').map(s => s.trim());
+        checkboxes.forEach(cb => { if (reasons.includes(cb.value)) cb.checked = true; });
+
         renderList(document.getElementById('search').value);
+
+        if(autoScroll) {
+            const el = document.getElementById(`item-${id}`);
+            if(el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     }
 
     function toggleLayer(type) {
-        if(type === 'raw') {
-            if(map.hasLayer(rawLayer)) { map.removeLayer(rawLayer); document.getElementById('toggleRaw').classList.remove('active'); }
-            else { map.addLayer(rawLayer); document.getElementById('toggleRaw').classList.add('active'); }
-        } else {
-            if(map.hasLayer(finalLayer)) { map.removeLayer(finalLayer); document.getElementById('toggleFinal').classList.remove('active'); }
-            else { map.addLayer(finalLayer); document.getElementById('toggleFinal').classList.add('active'); }
-        }
+        const layer = type === 'raw' ? rawLayer : finalLayer;
+        const btn = document.getElementById(type === 'raw' ? 'toggleRaw' : 'toggleFinal');
+        if(map.hasLayer(layer)) { map.removeLayer(layer); btn.classList.remove('active'); }
+        else { map.addLayer(layer); btn.classList.add('active'); }
     }
 
     document.getElementById('geoIn').onchange = (e) => {
@@ -385,17 +293,8 @@
     document.getElementById('kmlIn').onchange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
-        let kmlText;
-        if (file.name.endsWith('.kmz')) {
-            const zip = await JSZip.loadAsync(file);
-            const kmlFile = Object.values(zip.files).find(f => f.name.endsWith('.kml'));
-            kmlText = await kmlFile.async("string");
-        } else {
-            kmlText = await file.text();
-        }
-        const parser = new DOMParser();
-        const kmlDom = parser.parseFromString(kmlText, "text/xml");
-        handleInput(toGeoJSON.kml(kmlDom));
+        let kmlText = file.name.endsWith('.kmz') ? await (await JSZip.loadAsync(file)).file(/\.kml$/i)[0].async("string") : await file.text();
+        handleInput(toGeoJSON.kml(new DOMParser().parseFromString(kmlText, "text/xml")));
     };
 
     function handleInput(data) {
@@ -404,61 +303,62 @@
         const l = L.geoJSON(data, { style: { color: '#38bdf8', weight: 2, dashArray: '4' } }).addTo(rawLayer);
         map.fitBounds(l.getBounds());
         
-        let detected = "";
-        if(data.features && data.features[0].properties) {
-            detected = data.features[0].properties.name || data.features[0].properties.identifier || "";
-        }
-        
+        let detected = data.features?.[0]?.properties?.name || data.features?.[0]?.properties?.identifier || "";
         if(detected) {
-            const match = Object.keys(eAIPData).find(id => 
-                detected.toUpperCase().includes(id) || id.includes(detected.toUpperCase())
-            );
-            if(match) {
-                selectZone(match);
-                document.getElementById('matchStatus').innerText = "AUTO-MATCH: " + match;
+            const match = Object.keys(eAIPData).find(id => detected.toUpperCase().includes(id) || id.includes(detected.toUpperCase()));
+            if(match) { 
+                selectZone(match, true); 
+                document.getElementById('matchStatus').innerText = "Matched: " + match; 
+                document.getElementById('matchStatus').style.color = "var(--success)";
             }
         }
     }
 
     function process() {
-        const input = document.getElementById('inputGeo').value;
-        if(!selectedId || !input) {
-            alert("Please select a Reference Zone from Step 1 and provide Geometry in Step 2");
-            return;
-        }
-        
-        const source = JSON.parse(input);
-        const info = eAIPData[selectedId];
+        if(!selectedId) { alert("Select a record from Step 1 first"); return; }
+        applyEdits();
+    }
+
+    function applyEdits() {
+        const inputVal = document.getElementById('inputGeo').value;
+        if(!inputVal) return;
+        const source = JSON.parse(inputVal);
+        const reasons = Array.from(document.querySelectorAll('#reasonGroup input:checked')).map(cb => cb.value);
+        const now = new Date().toISOString().split('.')[0] + "Z";
 
         const result = {
             "type": "FeatureCollection",
-            "title": document.getElementById('editTitle').value,
+            "title": document.getElementById('editItem').value,
+            "metadata": {
+                "validFrom": now,
+                "issued": now
+            },
             "features": source.features.map(f => ({
                 "type": "Feature",
-                "geometry": { 
-                    ...f.geometry, 
-                    "layer": { ...info.layer } 
+                "geometry": {
+                    ...f.geometry,
+                    "layer": { 
+                        "upper": parseInt(document.getElementById('editUpper').value) || 0,
+                        "upperReference": document.getElementById('editUpperRef').value,
+                        "lower": parseInt(document.getElementById('editLower').value) || 0,
+                        "lowerReference": document.getElementById('editLowerRef').value,
+                        "uom": document.getElementById('editUom').value
+                    } 
                 },
                 "properties": { 
                     "identifier": document.getElementById('editId').value, 
-                    "country": info.properties.country, 
-                    "type": info.properties.type,
-                    "variant": info.properties.variant || "COMMON",
-                    "reason": info.properties.reason,
-                    "restrictionConditions": info.properties.restrictionConditions
+                    "country": document.getElementById('editCountry').value, 
+                    "variant": document.getElementById('editVariant').value,
+                    "type": document.getElementById('editType').value,
+                    "reason": reasons,
+                    "zoneAuthority": [
+                        { "purpose": document.getElementById('editPurpose').value }
+                    ],
+                    "restrictionConditions": document.getElementById('editRestriction').value
                 }
             }))
         };
         updateOutput(result);
-    }
-
-    function applyEdits() {
-        const text = document.getElementById('outputGeo').value;
-        if(!text) return;
-        let data = JSON.parse(text);
-        data.title = document.getElementById('editTitle').value;
-        data.features.forEach(f => f.properties.identifier = document.getElementById('editId').value);
-        updateOutput(data);
     }
 
     function updateOutput(data) {

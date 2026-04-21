@@ -126,8 +126,8 @@
         </div>
 
         <div class="grid-2">
-            <div><label>Type</label><input type="text" id="editType"></div>
-            <div><label>Purpose</label><input type="text" id="editPurpose"></div>
+            <div><label>Type</label><select id="editType"><option>USPACE</option><option>PROHIBITED</option><option>REQ_AUTHORIZATION</option><option>CONDITIONAL</option><option>NO_RESTRICTION</option></select></div>
+            <div><label>Purpose</label><select id="editPurpose"><option>AUTHORIZATION</option><option>NOTIFICATION</option><option>INFORMATION</option></select></div>
         </div>
 
         <div class="grid-2">
@@ -308,7 +308,6 @@
 async function deleteEntry() {
     if (!currentEditingKey) return;
     
-    // Safety check
     if (!confirm(`Confirm PERMANENT deletion of ID: ${currentEditingKey}?`)) return;
 
     toggleLoading(true);
