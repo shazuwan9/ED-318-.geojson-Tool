@@ -225,14 +225,11 @@
                     delete baseProps.restrictionConditions;
                 }
 
-                // Recursive function to strip Z-values regardless of nesting level
                 const stripZ = (coords) => {
                     if (!Array.isArray(coords)) return coords;
-                    // If we've reached the actual coordinate pair/triplet [x, y, z]
                     if (typeof coords[0] === 'number') {
                         return coords.slice(0, 2);
                     }
-                    // Otherwise, keep digging into nested arrays (rings, polygons, etc.)
                     return coords.map(stripZ);
                 };
 
@@ -241,10 +238,8 @@
                     "title": dbEntry.item,
                     "metadata": { "validFrom": now, "issued": now },
                     "features": item.data.features.map(f => {
-                        // Deep clone the geometry to avoid mutating the original queue data
                         let cleanGeometry = JSON.parse(JSON.stringify(f.geometry));
                         
-                        // Apply the recursive strip
                         cleanGeometry.coordinates = stripZ(cleanGeometry.coordinates);
 
                         return {
