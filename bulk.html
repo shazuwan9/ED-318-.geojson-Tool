@@ -134,34 +134,24 @@
     function updateButtonStates() {
         const processBtn = document.getElementById('processBtn');
         const downloadBtn = document.getElementById('downloadBtn');
-        
         processBtn.disabled = queue.length === 0;
-
         const hasItems = queue.length > 0;
         const allProcessed = queue.every(item => item.status === 'PROCESSED' || item.status === 'UNMATCHED');
         const atLeastOneSuccess = queue.some(item => item.status === 'PROCESSED');
-        
         downloadBtn.disabled = !(hasItems && allProcessed && atLeastOneSuccess);
     }
 
     const dropZone = document.getElementById('dropZone');
     const fileInput = document.getElementById('fileIn');
-    
     dropZone.onclick = () => fileInput.click();
     fileInput.onchange = (e) => handleFiles(e.target.files);
-    
     dropZone.ondragover = (e) => { e.preventDefault(); dropZone.classList.add('hover'); };
     dropZone.ondragleave = () => dropZone.classList.remove('hover');
-    dropZone.ondrop = (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('hover');
-        handleFiles(e.dataTransfer.files);
-    };
+    dropZone.ondrop = (e) => { e.preventDefault(); dropZone.classList.remove('hover'); handleFiles(e.dataTransfer.files); };
 
     async function handleFiles(files) {
         if (!files || files.length === 0) return;
         log(`Loading ${files.length} file(s)...`);
-        
         for (let file of files) {
             try {
                 let geojson = null;
@@ -178,9 +168,7 @@
                 } else {
                     geojson = JSON.parse(await file.text());
                 }
-
                 const matchedId = Object.keys(database).find(id => file.name.toUpperCase().includes(id));
-                
                 queue.push({
                     name: file.name,
                     data: geojson,
@@ -188,9 +176,7 @@
                     status: matchedId ? 'READY' : 'UNMATCHED',
                     processedData: null
                 });
-            } catch (err) {
-                log(`Error reading ${file.name}: ${err.message}`);
-            }
+            } catch (err) { log(`Error reading ${file.name}: ${err.message}`); }
         }
         renderQueue();
         updateButtonStates();
@@ -201,11 +187,7 @@
         tbody.innerHTML = "";
         queue.forEach(item => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${item.name}</td>
-                <td><small>${item.matchedId || 'No Match'}</small></td>
-                <td><span class="status-pill status-${item.status.toLowerCase()}">${item.status}</span></td>
-            `;
+            tr.innerHTML = `<td>${item.name}</td><td><small>${item.matchedId || 'No Match'}</small></td><td><span class="status-pill status-${item.status.toLowerCase()}">${item.status}</span></td>`;
             tbody.appendChild(tr);
         });
         document.getElementById('count').innerText = `${queue.length} Files`;
@@ -214,23 +196,55 @@
     function processAll() {
         mapLayer.clearLayers();
         log("Processing batch...");
-        
         queue.forEach(item => {
             if (item.matchedId && database[item.matchedId]) {
                 const dbEntry = database[item.matchedId];
                 const now = new Date().toISOString().split('.')[0] + "Z";
                 const baseProps = { ...dbEntry.properties };
                 
-                if (baseProps.type !== 'CONDITIONAL') {
-                    delete baseProps.restrictionConditions;
+                if (baseProps.type === 'REQ_AUTHORIZATION') {
+                    baseProps.zoneAuthority = [{ "purpose": "AUTHORIZATION" }];
+                } else if (baseProps.type === 'PROHIBITED') {
+                    baseProps.zoneAuthority = [{ "purpose": "INFORMATION" }];
                 }
 
-                const stripZ = (coords) => {
-                    if (!Array.isArray(coords)) return coords;
-                    if (typeof coords[0] === 'number') {
-                        return coords.slice(0, 2);
+                if (baseProps.type !== 'CONDITIONAL') {
+                    delete baseProps.restrictionConditions;
+                } else {
+                    baseProps.restrictionConditions = baseProps.restrictionConditions || "";
+                }
+
+                if (baseProps.reason) {
+                    if (!Array.isArray(baseProps.reason)) {
+                        baseProps.reason = baseProps.reason.split(',').map(s => s.trim()).filter(s => s);
                     }
-                    return coords.map(stripZ);
+                } else {
+                    baseProps.reason = [];
+                }
+
+                const cleanCoordsForPolygon = (feat) => {
+                    const type = feat.geometry.type;
+                    
+                    if (type === "Polygon") {
+                        return feat.geometry.coordinates.map(ring => ring.map(coord => [coord[0], coord[1]]));
+                    } 
+                    
+                    else if (type === "MultiPolygon") {
+                        return feat.geometry.coordinates[0].map(ring => ring.map(coord => [coord[0], coord[1]]));
+                    } 
+                    
+                    else if (type === "LineString") {
+                        let coords = feat.geometry.coordinates.map(coord => [coord[0], coord[1]]);
+                        
+                        const first = coords[0];
+                        const last = coords[coords.length - 1];
+                        if (first[0] !== last[0] || first[1] !== last[1]) {
+                            coords.push([first[0], first[1]]);
+                        }
+                        
+                        return [coords];
+                    }
+                    return [];
                 };
 
                 item.processedData = {
@@ -238,50 +252,46 @@
                     "title": dbEntry.item,
                     "metadata": { "validFrom": now, "issued": now },
                     "features": item.data.features.map(f => {
-                        let cleanGeometry = JSON.parse(JSON.stringify(f.geometry));
-                        
-                        cleanGeometry.coordinates = stripZ(cleanGeometry.coordinates);
-
                         return {
                             "type": "Feature",
                             "geometry": {
-                                ...cleanGeometry,
-                                "layer": dbEntry.layer 
+                                "type": "Polygon",
+                                "coordinates": cleanCoordsForPolygon(f),
+                                "layer": {
+                                    "upper": dbEntry.layer.upper,
+                                    "upperReference": dbEntry.layer.upperReference || dbEntry.layer.upperRef,
+                                    "lower": dbEntry.layer.lower,
+                                    "lowerReference": dbEntry.layer.lowerReference || dbEntry.layer.lowerRef,
+                                    "uom": dbEntry.layer.uom
+                                }
                             },
                             "properties": baseProps
                         };
                     })
                 };
-                
                 item.status = "PROCESSED";
                 L.geoJSON(item.processedData, {style: {color: '#22c55e'}}).addTo(mapLayer);
             }
         });
-
-        if (mapLayer.getLayers().length > 0) {
-            map.fitBounds(mapLayer.getBounds());
-        }
-        
+        if (mapLayer.getLayers().length > 0) { map.fitBounds(mapLayer.getBounds()); }
         renderQueue();
         updateButtonStates();
-        log("Batch complete. Check queue status.");
+        log("Batch complete. Type Polygon and Rules enforced.");
     }
 
     async function downloadZip() {
         const zip = new JSZip();
         let count = 0;
-        
         queue.forEach(item => {
             if (item.processedData) {
-                zip.file(`${item.matchedId}_ED318.geojson`, JSON.stringify(item.processedData, null, 2));
+                zip.file(`${item.matchedId}.geojson`, JSON.stringify(item.processedData, null, 2));
                 count++;
             }
         });
-
         const content = await zip.generateAsync({type:"blob"});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(content);
-        a.download = `ED318_Export_${new Date().getTime()}.zip`;
+        a.download = `ED318_Export_${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.zip`;
         a.click();
         log(`Downloaded ZIP containing ${count} files.`);
     }

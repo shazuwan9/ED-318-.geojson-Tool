@@ -152,7 +152,7 @@
                 <div class="help-container">
                     Step 1: Database
                     <span class="help-icon">?</span>
-                    <div class="tooltip">Choose the database entry that matches your geometry. Note: If you upload a file in Step 2 first, the system may auto-select this for you. If it doesn't, select the correct record manually before processing.</div>
+                    <div class="tooltip">Choose the database entry that matches your geometry.</div>
                 </div>
             </div>
             <small id="statusLine">Connecting...</small>
@@ -169,7 +169,7 @@
                 <div class="help-container">
                     Step 2: Geometry
                     <span class="help-icon">?</span>
-                    <div class="tooltip">Upload your spatial file (.kmz, .kml, or .geojson) using the corresponding button. Once uploaded, click Process Geometry (Tip: This action triggers the system to link your file with the database and prepares the metadata for Step 4).</div>
+                    <div class="tooltip">Upload your spatial file. Output will be forced to Polygon type.</div>
                 </div>
             </div>
             <small id="matchStatus">Awaiting source...</small>
@@ -201,7 +201,7 @@
                 <div class="help-container">
                     Step 4: Editor
                     <span class="help-icon">?</span>
-                    <div class="tooltip">If you need to modify any information displayed in Step 1 for your final output, make your changes in the Step 4 fields then click Update Metadata (this button only works after you have processed geometry in Step 2). Note: Changes made here only affect your current Step 3 export; they will not overwrite the permanent database.</div>
+                    <div class="tooltip">Adjust metadata for the current session.</div>
                 </div>
             </div>
             <small class="editor-badge">Sync Active</small>
@@ -216,14 +216,14 @@
                     <label>Upper | Ref</label>
                     <div style="display: flex; gap: 2px;">
                         <input type="number" id="editUpper" class="edit-input">
-                        <select id="editUpperRef" style="width: 75px;"><option>AMSL</option><option>AGL</option></select>
+                        <select id="editUpperReference" style="width: 75px;"><option>AMSL</option><option>AGL</option></select>
                     </div>
                 </div>
                 <div>
                     <label>Lower | Ref</label>
                     <div style="display: flex; gap: 2px;">
                         <input type="number" id="editLower" class="edit-input">
-                        <select id="editLowerRef" style="width: 75px;"><option>AGL</option><option>AMSL</option></select>
+                        <select id="editLowerReference" style="width: 75px;"><option>AGL</option><option>AMSL</option></select>
                     </div>
                 </div>
             </div>
@@ -265,7 +265,7 @@
                 <div class="help-container">
                     Step 3: Export
                     <span class="help-icon">?</span>
-                    <div class="tooltip">The system merges your database selection with your uploaded geometry to create an ED-318 formatted .geojson. Click Download ED-318 File to save your result. If you need to adjust specific details before downloading, proceed to Step 4.</div>
+                    <div class="tooltip">Download the final ED-318 formatted GeoJSON.</div>
                 </div>
             </div>
         </div>
@@ -346,12 +346,17 @@
         const typeEl = document.getElementById('editType');
         const purposeEl = document.getElementById('editPurpose');
         const restrictionEl = document.getElementById('editRestriction');
+        
         if (typeEl.value === 'REQ_AUTHORIZATION') {
             purposeEl.value = 'AUTHORIZATION';
+            purposeEl.disabled = true;
+        } else if (typeEl.value === 'PROHIBITED') {
+            purposeEl.value = 'INFORMATION';
             purposeEl.disabled = true;
         } else {
             purposeEl.disabled = false;
         }
+
         if (typeEl.value !== 'CONDITIONAL') {
             restrictionEl.value = "";
             restrictionEl.disabled = true;
@@ -366,9 +371,9 @@
         document.getElementById('editItem').value = entry.item || "";
         document.getElementById('editId').value = id || "";
         document.getElementById('editUpper').value = entry.layer.upper ?? "";
-        document.getElementById('editUpperRef').value = entry.layer.upperRef ?? "AMSL";
+        document.getElementById('editUpperReference').value = entry.layer.upperReference ?? entry.layer.upperRef ?? "AMSL";
         document.getElementById('editLower').value = entry.layer.lower ?? "";
-        document.getElementById('editLowerRef').value = entry.layer.lowerRef ?? "AGL";
+        document.getElementById('editLowerReference').value = entry.layer.lowerReference ?? entry.layer.lowerRef ?? "AGL";
         document.getElementById('editUom').value = entry.layer.uom ?? "ft";
         document.getElementById('editCountry').value = entry.properties.country ?? "";
         document.getElementById('editVariant').value = entry.properties.variant ?? "COMMON";
@@ -378,7 +383,7 @@
         handleTypeChange();
         const checkboxes = document.querySelectorAll('#reasonGroup input');
         checkboxes.forEach(cb => cb.checked = false);
-        let reasons = Array.isArray(entry.properties.reason) ? entry.properties.reason : (entry.properties.reason || "").split(',').map(s => s.trim());
+        let reasons = Array.isArray(entry.properties.reason) ? entry.properties.reason : (entry.properties.reason || "").split(',').map(s => s.trim()).filter(s => s);
         checkboxes.forEach(cb => { if (reasons.includes(cb.value)) cb.checked = true; });
         renderList(document.getElementById('search').value);
         if(autoScroll) {
@@ -439,26 +444,34 @@
         const reasons = Array.from(document.querySelectorAll('#reasonGroup input:checked')).map(cb => cb.value);
         const now = new Date().toISOString().split('.')[0] + "Z";
         const selectedType = document.getElementById('editType').value;
+        let finalPurpose = document.getElementById('editPurpose').value;
+
+        if (selectedType === 'REQ_AUTHORIZATION') finalPurpose = 'AUTHORIZATION';
+        if (selectedType === 'PROHIBITED') finalPurpose = 'INFORMATION';
 
         const result = {
             "type": "FeatureCollection",
             "title": document.getElementById('editItem').value,
             "metadata": { "validFrom": now, "issued": now },
             "features": source.features.map(f => {
-                let cleanGeometry = JSON.parse(JSON.stringify(f.geometry));
+                let cleanCoords = [];
+                const type = f.geometry.type;
                 
-                if (cleanGeometry.type === "Polygon") {
-                    cleanGeometry.coordinates = cleanGeometry.coordinates.map(ring => 
-                        ring.map(coord => coord.slice(0, 2))
-                    );
-                } else if (cleanGeometry.type === "LineString" || cleanGeometry.type === "MultiPoint") {
-                    cleanGeometry.coordinates = cleanGeometry.coordinates.map(coord => coord.slice(0, 2));
-                } else if (cleanGeometry.type === "Point") {
-                    cleanGeometry.coordinates = cleanGeometry.coordinates.slice(0, 2);
-                } else if (cleanGeometry.type === "MultiPolygon") {
-                    cleanGeometry.coordinates = cleanGeometry.coordinates.map(polygon => 
-                        polygon.map(ring => ring.map(coord => coord.slice(0, 2)))
-                    );
+                if (type === "Polygon") {
+                    cleanCoords = f.geometry.coordinates.map(ring => ring.map(coord => coord.slice(0, 2)));
+                } 
+                else if (type === "MultiPolygon") {
+                    cleanCoords = f.geometry.coordinates[0].map(ring => ring.map(coord => coord.slice(0, 2)));
+                }
+                else if (type === "LineString") {
+                    let coords = f.geometry.coordinates.map(coord => coord.slice(0, 2));
+                    
+                    const first = coords[0];
+                    const last = coords[coords.length - 1];
+                    if (first[0] !== last[0] || first[1] !== last[1]) {
+                        coords.push([first[0], first[1]]);
+                    }
+                    cleanCoords = [coords];
                 }
 
                 const props = { 
@@ -467,22 +480,23 @@
                     "variant": document.getElementById('editVariant').value,
                     "type": selectedType,
                     "reason": reasons,
-                    "zoneAuthority": [{ "purpose": document.getElementById('editPurpose').value }]
+                    "zoneAuthority": [{ "purpose": finalPurpose }]
                 };
                 
                 if (selectedType === 'CONDITIONAL') { 
-                    props.restrictionConditions = document.getElementById('editRestriction').value; 
+                    props.restrictionConditions = document.getElementById('editRestriction').value || ""; 
                 }
 
                 return {
                     "type": "Feature",
                     "geometry": {
-                        ...cleanGeometry,
+                        "type": "Polygon",
+                        "coordinates": cleanCoords,
                         "layer": { 
                             "upper": parseInt(document.getElementById('editUpper').value) || 0,
-                            "upperReference": document.getElementById('editUpperRef').value,
+                            "upperReference": document.getElementById('editUpperReference').value,
                             "lower": parseInt(document.getElementById('editLower').value) || 0,
-                            "lowerReference": document.getElementById('editLowerRef').value,
+                            "lowerReference": document.getElementById('editLowerReference').value,
                             "uom": document.getElementById('editUom').value
                         } 
                     },
